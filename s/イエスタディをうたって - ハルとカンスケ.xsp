@@ -1,0 +1,79 @@
+.SkinScript.ver=400
+.SkinScript.auth=冬目景 (+a@a)
+.SkinScript.titl=イエスタディをうたって - ハル
+.SkinScript.comm=リクオ～っ(｀ー´)！
+.Window.type=region
+.Window.img=イエスタディをうたって\ハルとカンスケ.bmp
+.Window.widt=450
+.Window.heig=260
+.Window.drag.x=0
+.Window.drag.y=0
+.Window.drag.widt=450
+.Window.drag.heig=260
+.Window.seek.x=150
+.Window.seek.y=247
+.Window.seek.widt=290
+.Window.seek.heig=13
+.XmsFile=初期設定.xms
+.List.type=window
+.Scroll.widt=20
+.ScrollArea.widt=290
+
+*Initialize
+imgload=イエスタディをうたって\ハルとカンスケ.bmp
+.::	ボタン設置
+objsize=110*95
+pos=0*0
+objxset=infowindow
+objsize=25*30
+pos=0*230
+objxset=prev
+objsize=15*30
+pos=25*230
+objxset=pause
+pos=40*230
+objxset=stop
+pos=55*230
+objxset=play
+objsize=20*30
+pos=70*230
+objxset=next
+pos=90*230
+objxset=listwindow
+objsize=15*30
+pos=110*230
+objxset=mode
+objsize=25*30
+pos=125*230
+objxset=cfgvolume
+.:: スタイルの変更
+objstyl=0*5
+objstyl=1*5
+objstyl=2*5
+objstyl=3*5
+objstyl=4*5
+objstyl=5*5
+objstyl=6*5
+objstyl=7*5
+objstyl=8*5
+mesfont=ＭＳ ゴシック*12
+*end
+
+*MainLoop
+.:: シークバー
+pos=150*253
+imgdraw=150*253*291*1
+drwboxs
+pos=150*249
+imgdraw=150*249*291*4
+pos=150*254
+imgdraw=150*254*291*5
+.:: スクロール情報
+pos=150*237
+imgdraw=150*237*291*12
+messcrl
+pos=0*237
+imgdraw=0*237*150*12
+pos=440*237
+imgdraw=440*237*10*12
+*end

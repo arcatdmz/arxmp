@@ -1,0 +1,160 @@
+.SkinScript.ver=400
+.SkinScript.auth=arc@arcis
+.SkinScript.titl=winamp2-skin emulator
+.SkinScript.comm=
+.Window.type=region
+.Window.widt=275
+.Window.heig=136
+.Window.drag.x=20
+.Window.drag.y=0
+.Window.drag.widt=220
+.Window.drag.heig=15
+.Window.seek.x=16
+.Window.seek.y=72
+.Window.seek.widt=248
+.Window.seek.heig=10
+.List.type=window
+.Scroll.widt=36
+.ScrollArea.widt=154
+.Var.num=1
+.Var.0.type=0
+.Var.0.comm=文字/シークバー色
+.Var.0.default=0*255*0
+.XmsFile=初期設定.xms
+
+.:: 初期化	************************************************
+*Initialize
+regmake
+mesfont=ＭＳ ゴシック*10
+
+.:: メイン領域	================================================
+imgload=was2-data\main.bmp
+imgdraw=0*0*275*116
+.:: タイトル	------------------------------------------------
+imgload=was2-data\titlebar.bmp
+pos=0*0
+imgdraw=27*0*275*14
+objsize=9*9
+pos=244*3
+objxset=minimize
+pos=264*3
+objxset=exit
+.:: スクロール情報	----------------------------------------
+.:: 情報ウィンドウを開くボタン
+objsize=154*12
+pos=111*24
+objxset=infowindow
+.:: シャッフル/リピート	----------------------------------------
+imgload=was2-data\shufrep.bmp
+pos=164*89
+imgdraw=28*30*47*15
+objsize=74*15
+objxset=mode
+pos=210*89
+imgdraw=0*30*28*15
+.:: シークバー	------------------------------------------------
+imgload=was2-data\posbar.bmp
+pos=16*72
+imgdraw=0*0*248*10
+.:: 再生ボタン群	------------------------------------------------
+imgload=was2-data\cbuttons.bmp
+pos=16*88
+imgdraw=0*0*114*18
+objsize=23*18
+objxset=prev
+pos=39*88
+objxset=play
+pos=62*88
+objxset=pause
+pos=85*88
+objxset=stop
+pos=108*88
+objxset=next
+pos=131*89
+imgdraw=114*0*22*16
+objsize=22*16
+objxset=addfile
+
+.:: リスト領域	================================================
+.::	高さ170px（タイトル20px）
+imgload=was2-data\pledit.bmp
+.:: タイトル	------------------------------------------------
+.::  左端
+pos=0*116
+imgdraw=0*0*25*20
+.::  間(左は62px)
+pos=25*116
+imgdraw=127*0*25*20
+pos=50*116
+imgdraw=127*0*25*20
+pos=75*116
+imgdraw=127*0*12*20
+.::  中央
+pos=87*116
+imgdraw=26*0*100*20
+.::  間(右は63px)
+pos=187*116
+imgdraw=127*0*25*20
+pos=212*116
+imgdraw=127*0*25*20
+pos=237*116
+imgdraw=127*0*13*20
+.::  右端
+pos=250*116
+imgdraw=153*0*25*20
+.:: ボタン群	------------------------------------------------
+.::  リスト画面を開くボタン
+objsize=275*20
+pos=0*116
+objxset=listwindow
+
+.:: 透過処理	================================================
+objstyl=0*5
+objstyl=1*5
+objstyl=2*5
+objstyl=3*5
+objstyl=4*5
+objstyl=5*5
+objstyl=6*5
+objstyl=7*5
+objstyl=8*5
+objstyl=9*5
+objstyl=10*5
+objstyl=11*5
+
+imgload=was2-data\main.bmp
+col=%v.0%
+*end
+
+.:: メインループ	************************************************
+*MainLoop
+col=%v.0%
+
+.:: スクロール情報	----------------------------------------
+mesfont=ＭＳ ゴシック*11
+pos=111*24
+imgdraw=111*24*154*12
+pos=111*24
+messcrl
+pos=265*24
+imgdraw=265*24*10*12
+pos=0*24
+imgdraw=0*24*111*12
+.:: 再生時間表示	------------------------------------------------
+mesfont=Arial*17
+pos=36*26
+imgdraw=36*26*63*13
+pos=68*24
+mes=%p.posm%*right
+pos=98*24
+mes=%p.poss%*right
+.:: シークバー表示	----------------------------------------
+pos=16*76
+imgdraw=16*76*248*2
+drwboxs
+pos=16*72
+imgdraw=16*72*248*4
+pos=16*78
+imgdraw=16*78*248*5
+
+*end

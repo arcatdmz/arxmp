@@ -1,0 +1,168 @@
+.SkinScript.ver=400
+.SkinScript.auth=sue && arc@arcis
+.SkinScript.titl=style - azure
+.SkinScript.comm=-
+.Window.type=region
+.Window.img=style\azure.bmp
+.Window.widt=300
+.Window.heig=146
+.Window.drag.x=0
+.Window.drag.y=0
+.Window.drag.widt=270
+.Window.drag.heig=15
+.Window.seek.x=15
+.Window.seek.y=110
+.Window.seek.widt=270
+.Window.seek.heig=5
+.Window.trans.r=255
+.Window.trans.g=255
+.Window.trans.b=255
+.List.type=normal
+.List.heig=155
+.Scroll.widt=18
+.ScrollArea.widt=270
+
+*Initialize
+imgload=style\azure.bmp
+.:: ボタンを設置
+.::  メイン領域右上
+objsize=15*15
+pos=270*0
+objxset=minimize
+pos=285*0
+objxset=exit
+.::  メイン領域下
+objsize=30*21
+pos=0*125
+objxset=prev
+objsize=20*21
+pos=30*125
+objxset=pause
+pos=50*125
+objxset=stop
+pos=70*125
+objxset=play
+pos=90*125
+objxset=next
+pos=110*125
+objxset=mode
+pos=130*125
+objxset=listarea
+pos=150*125
+objxset=infowindow
+pos=170*125
+objxset=cfgvolume
+.:: リスト領域の初期化
+pos=1*146
+objsize=15*36
+objxset=moveup*↑
+objxset=movedown*↓
+objsize=15*26
+objxset=delete*D
+objsize=15*25
+objxset=rename*R
+objsize=89*15
+pos=1*269
+objxset=addfile*ファイル追加
+objxset=favorite*お気に入り
+objsize=76*15
+pos=90*269
+objxset=addfolder*フォルダ追加
+objsize=90*15
+objxset=savelist*リストを保存
+pos=166*270
+objsize=14*14
+objxset=addfolderchk
+pos=180*269
+objsize=90*15
+objxset=clearfile*ファイル消去
+objxset=loadlist*リストを読込
+pos=270*269
+objsize=29*15
+objxset=clearlist*C
+objxset=listwindow*L
+mesfont=ＭＳ ゴシック*11
+pos=16*146
+objsize=283*130
+objxset=mainlist
+.:: オブジェクトスタイル変更
+.::  メイン領域ボタン透明化
+objstyl=0*5
+objstyl=1*5
+objstyl=2*5
+objstyl=3*5
+objstyl=4*5
+objstyl=5*5
+objstyl=6*5
+objstyl=7*5
+objstyl=8*5
+objstyl=9*5
+objstyl=10*5
+.::  リスト領域ボタン
+.::   左
+objpimg=11*1*147*15*36
+objstyl=11*13
+objpimg=12*1*183*15*36
+objstyl=12*13
+objpimg=13*1*219*15*25
+objstyl=13*13
+objpimg=14*1*244*15*25
+objstyl=14*13
+.::   下
+objpimg=15*1*269*89*15
+objstyl=15*13
+objpimg=16*1*284*89*15
+objstyl=16*13
+objpimg=17*90*269*76*15
+objstyl=17*13
+objpimg=18*90*284*90*15
+objstyl=18*13
+objpimg=20*180*269*90*15
+objstyl=20*13
+objpimg=21*180*284*90*15
+objstyl=21*13
+objpimg=22*270*269*29*15
+objstyl=22*13
+objpimg=23*270*284*29*15
+objstyl=23*13
+.:: ファイル情報
+mesfont=ＭＳ ゴシック*12
+pos=15*49
+mes=artist　: %p.auth%
+pos=15*69
+mes=title　 : %p.titl%
+*end
+
+*MainLoop
+.:: スクロール情報
+pos=15*20
+imgdraw=10*20*270*20
+pos=15*23
+mesfont=ＭＳ ゴシック*11
+messcrl
+pos=0*20
+imgdraw=0*20*15*20
+pos=285*20
+imgdraw=285*20*15*20
+.:: シークバー
+drwboxf=15*110*284*115
+pos=16*111
+imgdraw=16*111*268*4
+drwboxs
+.:: 再生時間
+pos=15*89
+imgdraw=15*89*285*12
+mesfont=ＭＳ ゴシック*12
+mes=pos/len : %p.posi% / %p.lgth%
+*end
+
+*ChangeFile
+.:: ファイル情報
+mesfont=ＭＳ ゴシック*12
+pos=15*49
+imgdraw=15*49*285*12
+mes=artist　: %p.auth%
+pos=15*69
+imgdraw=15*69*285*12
+mes=title　 : %p.titl%
+*end

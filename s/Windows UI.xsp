@@ -1,0 +1,726 @@
+.SkinScript.ver=40218
+.SkinScript.auth=arc@arcis
+.SkinScript.titl=Windows UI
+.SkinScript.comm=concept model #2 (ver.0.90)
+
+.Window.type=region
+.Window.widt=640
+.Window.heig=280
+.Window.drag.x=0
+.Window.drag.y=0
+.Window.drag.widt=640
+.Window.drag.heig=280
+.Window.seek.x=285
+.Window.seek.y=265
+.Window.seek.widt=300
+.Window.seek.heig=9
+
+.XmsFile=初期設定.xms
+.List.type=normal
+.Scroll.widt=16
+.ScrollArea.widt=320
+
+.Var.num=1
+.Var.0.comm=表示ページ
+.Var.0.type=5
+.Var.0.default=0
+.Var.0.list=0<BR>1<BR>2
+.Var.0.list+=page.0 - 再生リストの設定<BR>page.1 - 画面表示の設定<BR>page.2 - 音楽再生の設定
+
+::: ┌────────────────────────┐
+::: │　　　　　　　　　　　　　　　　　　　　　　　　│
+::: │使い勝手を一番に重視して作り上げました。　　　　│
+::: │気付いたら、今までで一番の大作になっていました。│
+::: │　　　　　　　　　　　　　　　　　　　　　　　　│
+::: │「機能番号」は人間にはとことん分かり辛いですが、│
+::: │少し凝ったチェックボックスを設置するときに駆使す│
+::: │る必要が出てきます。 と言っても仕様番号40218の時│
+::: │点で設置できる有効なチェックボックスの種類はそん│
+::: │なに多くなく、全てこのスキンで使われています。　│
+::: │どうぞ参考にしてみてください。　　　　　　　　　│
+::: │　　　　　　　　　　　　　　　　　　　　　　　　│
+::: │　　　　　　　　　　　　　　　　　 by arc@arcis │
+::: └────────────────────────┘
+
+
+::: ◇◇初期化処理◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇
+*Initialize
+
+::: □ ウィンドウの外形を準備
+::: ￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣
+:::	抜き色
+col=255*0*1
+drwboxf=0*0*639*279
+:::	枠線
+col=%s.cols%
+drwline=0*250*638*250
+drwline=0*250*0*278
+drwline=0*279*638*279
+drwline=639*250*639*278
+:::	背景
+col=%s.col%
+drwboxf=1*251*638*278
+
+::: □ オブジェクトを設置
+::: ￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣
+:::	操作パネル
+mesfont=MS UI Gothic*11
+objsize=45*24
+pos=5*253
+objxset=prev*<< 前
+objsize=57*24
+pos=55*253
+objxset=pause*一時停止
+objsize=38*24
+pos=117*253
+objxset=stop*停止
+objsize=50*24
+pos=160*253
+objxset=play*> 再生
+objsize=45*24
+pos=215*253
+objxset=next*次 >>
+pos=590*253
+objxset=listarea*設定
+:::	リスト領域
+:::		・ページ切り替えボタン
+mesfont=Tahoma*14
+objsize=20*21
+pos=575*3
+objxset=$30000013*0
+pos=595*3
+objxset=$30000014*1
+pos=615*3
+objxset=$30000015*2
+
+::: ◆注◆
+::: 上で設置しているオブジェクトが持つ機能番号
+:::  $30000013 は *UserDef4
+:::  $30000014 は *UserDef5
+:::  $30000015 は *UserDef6
+::: のスクリプトを実行します。
+::: 　　　　　　　　　　　　　　　　　(cf. 機能番号一覧)
+
+:::		・page.1 - 再生リストの設定
+mesfont=MS UI Gothic*11
+objsize=60*19
+pos=85*7
+objxset=clearlist*新規作成
+objsize=45*19
+pos=147*7
+objxset=savelist*保存
+pos=192*7
+objxset=loadlist*読込
+objsize=80*19
+pos=240*7
+objxset=favorite*お気に入り
+mesfont=MS UI Gothic*13
+objsize=315*180
+pos=5*30
+objxset=mainlist
+mesfont=MS UI Gothic*11
+objsize=30*19
+pos=65*195
+objxset=moveup*↑
+pos=95*195
+objxset=movedown*↓
+objsize=45*19
+pos=128*195
+objxset=clearfile*削除
+objsize=65*19
+pos=173*195
+objxset=delete*+ごみ箱へ
+objsize=74*19
+pos=241*195
+objxset=rename*名前の変更
+objsize=50*19
+pos=65*215
+objxset=addfile*ファイル
+objsize=70*19
+pos=115*215
+objxset=addfolder*フォルダから
+objsize=300*19
+pos=335*85
+objxset=$240A0010*リストファイルは新規再生リストに読み込み
+
+::: ◆注◆
+::: $00020000(CHKBOX) との論理和で表される機能番号を持つ
+::: オブジェクトがチェックボックスとして設置されます。
+::: 例えば上の $240A0010 は $24080010 | $00020000 です。
+::: ただ、こんな面倒なことを考えなくとも、機能番号の三、
+::: 四桁目を 0A として設置したオブジェクトは全てチェック
+::: ボックスになる、というくらいの理解で十分です。
+
+::: ※論理和について少し詳しい説明…
+::: 現行のコンピュータは全てのものを 0 か 1 で表す二進法
+::: を利用してプログラムを動かします。
+::: 先ほどの十六進数を二進数に直すと
+:::
+:::  $24080010 は 0010 0100 0000 1000 0000 0000 0001 0000
+:::  $00020000 は 0000 0000 0000 0010 0000 0000 0000 0000
+:::
+::: ですが、この二つの二進数の同じ桁を比べて
+::: 「どちらか一方でも 1 であれば 1 にする」のが論理和です。
+::: つまり二数の論理和は
+:::
+:::  $24080010 | $00020000 =
+:::
+:::	0010 0100 0000 1010 0000 0000 0001 0000
+:::	($2　　4　　0　　A　　0　　0　　1　　0)
+:::
+::: となります。
+
+::: 桁数が多すぎて分かりづらい気もするのでもう一つ例示。
+:::
+:::  $3A2 (0011 1010 0010)
+:::  $49D (0100 1001 1101)
+:::
+::: に対して
+:::
+:::  $3A2 | $49D = $7BF (0111 1011 1111)
+
+::: 言うなれば「位上がりの無い足し算」？…ちょっと違うか。
+
+::: ちなみに「両方 1 のときだけ 1 にする」論理積とか、
+::: コンピュータ的な算法は他にも何種類かあります。
+
+pos=335*105
+objxset=$240A0011*重複ファイルは最下行に移動
+objsize=85*19
+pos=335*155
+objxset=$250A0001*MPEG Audio
+objsize=120*19
+pos=420*155
+objxset=$250A0002*WindowsMediaAudio
+objsize=95*19
+pos=540*155
+objxset=$250A0004*Midi
+objsize=85*19
+pos=335*175
+objxset=$250A0008*Wave
+objsize=120*19
+pos=420*175
+objxset=$250A0010*OggVorbis
+objsize=95*19
+pos=540*175
+objxset=$250A0020*CD Audio
+objsize=175*19
+pos=335*195
+objxset=$250A0040*(その他MCIで再生可能なファイル)
+objsize=125*19
+pos=510*195
+objxset=$250A0080*(〃DirectShow〃)
+objsize=175*19
+pos=335*215
+objxset=$250A1000*サブフォルダ内のファイル
+objsize=125*19
+pos=510*215
+objxset=$250A2000*リストファイルの中身
+:::		・page.2 - 画面表示の設定
+col=255*255*255
+drwboxf=5*6*319*160
+mesfont=Tahoma*24*17
+col=240*0*0
+pos=12*15
+mes=Windows UI
+mesfont=Tahoma*12
+pos=315*37
+mes=really fits with Windows User Interface.*right
+drwline=15*49*314*49
+mesfont=Tahoma*12*17
+col=%s.col%
+pos=153*90
+mes=thanks for using arXmp,*center
+mes="%s.user%".*center
+
+::: ◆注◆
+::: 画像貼り付けボタン設置のため、一時的に画面に
+::: メッセージを描画しています。
+
+::: 貼り付けボタンその１
+:::	オブジェクトID 33(34個目に設置したオブジェクト)
+objsize=315*154
+pos=5*6
+objxset=$30000016
+objpimg=33*5*6*315*154
+objstyl=33*13
+
+col=200*0*0
+drwboxf=5*6*319*160
+col=240*0*0
+drwboxf=5*65*319*65
+drwboxf=5*67*319*68
+drwboxf=5*70*319*75
+drwboxf=5*78*319*90
+drwboxf=5*94*319*125
+drwboxf=5*130*319*150
+mesfont=Arial Black*13*1
+col=255*255*255
+pos=8*5
+mes=running under...
+mesfont=Arial Black*80*1
+pos=8*8
+mes=a
+pos=55*-1
+mes=r
+mesfont=Arial Black*120*1
+pos=80*-21
+mes=X
+mesfont=Arial Black*60*1
+pos=159*24
+mes=m
+mesfont=Arial Black*40*1
+pos=217*39
+mes=u
+pos=245*31
+mes=s
+pos=269*41
+mes=i
+pos=282*39
+mes=c
+pos=316*101
+mes=player.*right
+
+::: 貼り付けボタンその２
+::: オブジェクトID 34(35個目に設置したオブジェクト)
+pos=5*6
+objxset=$30000017
+objpimg=34*5*6*315*154
+objstyl=34*13
+
+col=255*0*1
+drwboxf=0*0*639*245
+::: ↑画像貼り付け後、抜き色で塗り潰して後始末
+
+mesfont=MS UI Gothic*11
+objsize=300*19
+pos=335*85
+objxset=$240A0020*メイン画面を常に最前面表示
+pos=335*105
+objxset=$240A0021*ボタンなどにチップヘルプを表示
+pos=335*125
+objxset=$240A0022*タスクトレイに常にアイコンを表示
+pos=335*145
+objxset=$240A0023*(メイン画面不定形時)タスクバーにタイトル表示
+mesfont=MS UI Gothic*13
+objsize=120*50
+pos=6*185
+objxset=listwindow*リスト画面
+pos=129*185
+objxset=infowindow*情報画面
+:::		・page.3 - 音楽再生の設定
+objsize=315*154
+pos=5*6
+objxset=$06000003
+objstyl=%o.$06000003%*5
+
+::: ◆注◆
+::: 上で設置しているオブジェクトが持つ機能番号
+::: $06000003 は、「音楽の情報」メニューを表示します。
+::: 　　　　　　　　　　　　　　　　　(cf. 機能番号一覧)
+
+objsize=100*21
+pos=100*165
+objxset=showfolder*親フォルダを開く
+objsize=115*21
+pos=205*165
+objxset=showproperty*プロパティを表示
+mesfont=MS UI Gothic*11
+objsize=300*19
+pos=335*85
+objxset=$270A0004*音楽情報の取得に mp3infp.dll を使用
+pos=335*105
+objxset=$0A0A0010*再生リストを繰返し再生
+pos=335*125
+objxset=$240A0030*起動時に前回終了時の再生箇所を再現
+mesfont=MS UI Gothic*13
+objsize=150*42
+pos=330*148
+objxset=$21080003*再生に使用する仕組み
+objsize=140*42
+pos=483*148
+objxset=$21080004*再生できるファイル種
+objsize=200*42
+pos=423*193
+objxset=cfgvolume*音量の調整
+
+::: □ ウィンドウの外形を設定
+::: ￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣
+:::	赤を抜き色にして
+col=255*0*1
+:::	外形決定
+winregi
+
+mesfont=Tahoma*16
+*end
+::: ◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇
+
+
+::: ◇◇曲情報表示処理◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇
+*MainLoop
+
+::: □ 前回のループでの表示分をクリア
+::: ￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣
+:::	背景のクリア
+col=%s.col%
+drwboxf=265*251*584*278
+
+::: □ 表示
+::: ￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣
+:::	シークバーの描画
+col=%s.cols%
+drwboxs
+drwline=284*275*584*275
+:::	スクロール文字列の表示
+pos=266*254
+messcrl
+col=0*0*0
+pos=265*253
+messcrl
+
+::: □ はみ出たところを再描画
+::: ￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣
+:::	枠線の再描画
+col=%s.cols%
+drwline=0*250*0*278
+drwline=639*250*639*278
+:::	背景の再描画
+col=%s.col%
+drwboxf=1*251*264*278
+drwboxf=585*251*638*278
+
+*end
+::: ◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇
+
+
+::: ◇◇再生リスト領域表示処理◇◇◇◇◇◇◇◇◇◇◇◇◇
+*ShowList
+
+::: □ 共通の処理
+::: ￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣
+:::	オブジェクトを隠す
+objstyl=9*2
+objstyl=10*2
+objstyl=11*2
+objstyl=12*2
+objstyl=13*2
+objstyl=14*2
+objstyl=15*2
+objstyl=16*2
+objstyl=17*2
+objstyl=18*2
+objstyl=19*2
+objstyl=20*2
+objstyl=21*2
+objstyl=22*2
+objstyl=23*2
+objstyl=24*2
+objstyl=25*2
+objstyl=26*2
+objstyl=27*2
+objstyl=28*2
+objstyl=29*2
+objstyl=30*2
+objstyl=31*2
+objstyl=32*2
+objstyl=33*2
+objstyl=34*2
+objstyl=35*2
+objstyl=36*2
+objstyl=37*2
+objstyl=38*2
+objstyl=39*2
+objstyl=40*2
+objstyl=41*2
+objstyl=42*2
+objstyl=43*2
+objstyl=44*2
+objstyl=45*2
+objstyl=46*2
+objstyl=47*2
+objstyl=48*2
+objstyl=49*2
+:::	ウィンドウの外形を準備
+:::		・枠線
+col=%s.cols%
+drwline=0*0*638*0
+drwline=0*0*0*243
+drwline=0*244*638*244
+drwline=639*0*639*243
+:::		・背景
+col=%s.col%
+drwboxf=1*1*638*243
+:::	タイトル表示部のクリア
+col=%s.cols%
+drwboxf=325*1*638*25
+mesfont=Tahoma*16
+col=%s.col%
+pos=336*3
+mes="Windows UI" skin - page.%v.0%
+col=0*0*0
+pos=335*2
+mes="Windows UI" skin - page.%v.0%
+col=%s.cols%
+pos=635*24
+
+::: □ 各ページ別の処理
+::: ￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣
+exefunc=$3000001%v.0%
+
+::: ◆注◆
+::: %v.0% には 0～2 が代入されるので、
+::: 上の命令は機能番号 $30000010, $30000011, $30000012、
+::: の機能を実行する意味になります。
+::: つまり *UserDef1～3 のスクリプトを実行します。
+::: 　　　　　　　　　　　　　　　　　(cf. 機能番号一覧)
+
+exefunc=$30000003
+*end
+::: ◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇
+
+
+::: ◇◇再生リスト領域隠蔽処理◇◇◇◇◇◇◇◇◇◇◇◇◇
+*HideList
+
+::: □ ウィンドウの外形を設定
+::: ￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣
+col=255*0*1
+drwboxf=0*0*639*245
+winregi
+
+::: ◆注◆
+::: こんなふうにウィンドウの形を変えることで再生リストを
+::: 隠したりしても良いんじゃないでしょうか。
+
+*end
+::: ◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇
+
+
+::: ◇◇音楽情報表示処理◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇
+*ChangeFile
+mesfont=Tahoma*12
+col=255*255*255
+drwboxf=6*31*318*158
+col=0*0*0
+pos=10*35
+mes=ファイル名: %p.file%*box*305
+mes=ファイル形式: %p.form%*box*305
+mes=製作者: %p.auth%*box*305
+mes=タイトル: %p.titl%*box*305
+mes=コメント: %p.comm%*box*305
+mesfont=Tahoma*16
+*end
+::: ◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇
+
+
+::: ◇◇音楽情報表示処理◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇
+*ShowTiphelp
+objhelp=6*「page.0 - 再生リストの設定」を開きます
+objhelp=7*「page.1 - 画面表示の設定」を開きます
+objhelp=8*「page.2 - 音楽再生の設定」を開きます
+objhelp=21*チェックしておくと、リストファイルを読み込むときに一旦再生リストを空にします
+objhelp=22*チェックしておくと、再生リストに既に存在する項目を追加しようとしたときに、それを最下行に移動します
+objhelp=32*チェックしておくと、[フォルダ追加]でフォルダ内のリストファイルの中身まで検索します
+objhelp=33*?
+objhelp=34*!
+objhelp=36*ぴょい。
+objhelp=44*mp3infp.dll は、音楽ファイルのタグ情報取得/編集用プログラムです
+objhelp=45*チェックしておくと、再生リストを最後まで再生し終えたときに、はじめに戻ってまた再生します
+objhelp=46*設定がONで、一時的に再現をやめさせたいときは起動処理中 [Shift] キーを押しっぱなしにしてください
+objhelp=47*音楽の再生に使用する仕組みを MCI, DirectShow, 外部DLL から選べます
+objhelp=48*(音楽プレイヤーなのに画像や動画まで!?)
+*end
+::: ◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇
+
+
+::: ◇◇ page.1 表示処理◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇
+*UserDef1
+mes=再生リストの設定*right
+objstyl=6*1
+objstyl=7*0
+objstyl=8*0
+
+::: □ オブジェクトを表示する
+::: ￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣
+objstyl=9*3
+objstyl=10*3
+objstyl=11*3
+objstyl=12*3
+objstyl=13*3
+objstyl=14*3
+objstyl=15*3
+objstyl=16*3
+objstyl=17*3
+objstyl=18*3
+objstyl=19*3
+objstyl=20*3
+objstyl=21*3
+objstyl=22*3
+objstyl=23*3
+objstyl=24*3
+objstyl=25*3
+objstyl=26*3
+objstyl=27*3
+objstyl=28*3
+objstyl=29*3
+objstyl=30*3
+objstyl=31*3
+objstyl=32*3
+
+::: □ 文字などを表示する
+::: ￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣
+mesfont=MS UI Gothic*14*1
+col=0*0*0
+pos=6*10
+mes=再生リスト
+pos=331*65
+mes=設定>リスト編集
+pos=331*135
+mes=設定>再生リストの登録対象
+mesfont=MS UI Gothic*11
+pos=11*200
+mes=選択項目 :
+pos=11*220
+mes=追加 :
+col=%s.cols%
+drwline=4*24*319*24
+drwline=329*79*634*79
+drwline=329*149*634*149
+drwline=185*225*326*225
+drwline=323*221*327*225
+drwline=323*229*327*225
+
+::: □ ウィンドウの外形を設定
+::: ￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣
+col=255*0*1
+winregi
+
+mesfont=Tahoma*16
+*end
+::: ◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇
+
+
+::: ◇◇ page.2 表示処理◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇
+*UserDef2
+mes=画面表示の設定*right
+objstyl=6*0
+objstyl=7*1
+objstyl=8*0
+
+::: □ オブジェクトを表示する
+::: ￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣
+objstyl=33*3
+objstyl=35*3
+objstyl=36*3
+objstyl=37*3
+objstyl=38*3
+objstyl=39*3
+objstyl=40*3
+
+::: □ 文字などを表示する
+::: ￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣
+mesfont=MS UI Gothic*14*1
+col=0*0*0
+pos=331*65
+mes=設定>画面表示
+pos=6*165
+mes=ウィンドウの表示/非表示切り替え
+col=%s.cols%
+drwline=329*79*634*79
+drwline=5*179*634*179
+mesfont=ＭＳ ゴシック*12
+pos=635*224
+mes=ver.0.90 released on 04/01/30 ヽ(´ー｀)ノ*right
+
+::: □ ウィンドウの外形を設定
+::: ￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣
+col=255*0*1
+winregi
+
+mesfont=Tahoma*16
+*end
+::: ◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇
+
+
+::: ◇◇ page.3 表示処理◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇
+*UserDef3
+mes=音楽再生の設定*right
+objstyl=6*0
+objstyl=7*0
+objstyl=8*1
+
+::: □ オブジェクトを表示する
+::: ￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣
+objstyl=41*3
+objstyl=42*3
+objstyl=43*3
+objstyl=44*3
+objstyl=45*3
+objstyl=46*3
+objstyl=47*3
+objstyl=48*3
+objstyl=49*3
+
+::: □ 文字などを表示する
+::: ￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣
+mesfont=MS UI Gothic*14*1
+col=0*0*0
+pos=6*10
+mes=再生中の音楽情報
+pos=331*65
+mes=設定>音楽再生
+col=%s.cols%
+drwline=4*24*319*24
+drwline=329*79*634*79
+col=%s.cols%
+drwboxf=5*30*319*159
+col=255*255*255
+drwboxf=6*31*318*158
+
+::: □ ウィンドウの外形を設定
+::: ￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣
+col=255*0*1
+winregi
+
+mesfont=Tahoma*16
+*end
+::: ◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇
+
+
+::: ◇◇表示ページ切り替え処理◇◇◇◇◇◇◇◇◇◇◇◇◇
+*UserDef4
+exefunc=$1C040000*0
+exefunc=%f.listarea%
+*end
+*UserDef5
+exefunc=$1C040000*1
+exefunc=%f.listarea%
+*end
+*UserDef6
+exefunc=$1C040000*2
+exefunc=%f.listarea%
+*end
+
+::: ◆注◆
+::: *UserDef4～6 はいずれもスキン変数の値を編集(→スキン
+::: を再読み込み)したあと、リスト領域を表示しています。
+
+::: ◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇
+
+
+::: ◇◇ page.2 ロゴの仕掛け◇◇◇◇◇◇◇◇◇◇◇◇◇◇
+*UserDef7
+objstyl=33*2
+objstyl=34*3
+*end
+*UserDef8
+objstyl=33*3
+objstyl=34*2
+*end
+
+::: ◆注◆
+::: 表示するボタンを挿げ替えることで、あたかも同じボタン
+::: を押すごとに違う機能が実行されているように見えます。
+::: (実際は違うボタンを交互に押してるだけ。)
+
+::: ◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇

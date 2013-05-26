@@ -1,0 +1,98 @@
+.LanguageFile.ver=40301
+
+.:: ※ このファイルの改変、再配布はご自由にどうぞ。
+.::	　　　　　　　　　　　　　　　　　　　by arc@arcis
+																		
+.:: ――――――――――――――――――――――――――――――――――
+.:: 再生モード
+.Mode.nor=NOR(ﾉｰﾏﾙ )
+.Mode.rev=REV(ﾘﾊﾞｰｽ)
+.Mode.rnd=RND(ﾗﾝﾀﾞﾑ)
+.Mode.rep=REP(ﾘﾋﾟｰﾄ)
+.Mode.stp=STP(ｽﾄｯﾌﾟ)
+.Mode.mdr=MDR(ﾚｺｰﾄﾞ)
+
+.:: ――――――――――――――――――――――――――――――――――
+.:: リストの繰り返し再生
+.RepMode.no=OFF
+.RepMode.yes=O N
+
+.:: ――――――――――――――――――――――――――――――――――
+.:: 再生状態
+.Status.stopped=停止
+.Status.closed=再生終了
+.Status.playing=再生中
+.Status.paused=一時停止中
+
+.:: ――――――――――――――――――――――――――――――――――
+.:: 音楽種
+.Type.mp3=MP3
+.Type.wma=WMA
+.Type.mid=Midi
+.Type.wav=Wave
+.Type.ogg=OggVorbis
+.Type.cda=CD-Audio
+.Type.mci=(MCI で再生可能なファイル)
+.Type.dxs=(DirectShow で再生可能なファイル)
+
+.:: ――――――――――――――――――――――――――――――――――
+.:: ダイアログ
+.Welcome=プレイヤーのご利用ありがとうございます
+.Err.format=指定された%format%は壊れているか、<BR>または未対応の形式であるため読み込むことが出来ませんでした。<BR>%confirm%<BR>(%file%)
+.Err.notfound=指定された%format%が見つからず、読み込むことが出来ませんでした。<BR>%confirm%<BR>(%file%)
+.Err.toomany=再生リスト登録ファイルが多すぎて表示し切れません。<BR>一部の登録ファイルがリストから削除されます。
+.Err.onsave=ファイルの保存に失敗しました。<BR><BR>ファイル名に使えない文字を指定していないか、<BR>読み取り専用のディスクに保存しようとしていないかなどを確認してください。<BR><BR>(%file%)
+.Sub.cfm=再生リストから削除しますか？<BR>
+.Dlg.folder=音楽ファイルを検索するフォルダを選んでください。
+.Dlg.rename=変更後の名前を入力してください。
+.Dlg.favorite=お気に入りの登録名を入力してください。
+.Cfm.del=指定された音楽ファイルをごみ箱に捨ててよろしいですか？<BR><BR>(%file%)
+.Cfm.clrall=再生リストを空にしてよろしいですか？
+.Cfm.overwrite=指定されたリストファイルは既に存在します。<BR>上書きしてもよろしいですか？<BR><BR>(%file%)
+
+.:: ――――――――――――――――――――――――――――――――――
+.:: オブジェクトのチップヘルプ
+
+.::  ウィンドウ
+.Obj.listwindow=リストウィンドウを表示します
+.Obj.closelistwindow=リストウィンドウを閉じます
+.Obj.listarea=リストエリアを表示します
+.Obj.infowindow=情報ウィンドウを表示します
+.Obj.minimize=メインウィンドウを最小化します
+.Obj.showfolder=再生中の音楽ファイルの親フォルダを開きます
+.Obj.showproperty=再生中の音楽のプロパティ画面を開きます
+.Obj.cfgvolume=音量を調整します
+.Obj.exit=プレイヤーを終了します
+
+.::  メニュー
+.Obj.favorite=現在の再生リストをお気に入りとして保存するか、またはお気に入りを読み込みます
+.Obj.savefavr=現在の再生リストをお気に入りとして保存します
+.Obj.popup=メニューを表示します
+
+.::  音楽再生
+.Obj.play=再生リストで選択されている音楽ファイルを再生します
+.Obj.prev=一つ前のファイルを再生します
+.Obj.next=一つ後のファイルを再生します
+.Obj.pause=音楽の再生を一時停止/復帰します
+.Obj.stop=音楽の再生を停止します
+
+.::  リスト編集
+.Obj.mainlist=再生リストです
+.Obj.mainlistc=再生リストです
+.Obj.addfolderchk=チェックしておくと、[フォルダ追加]でサブフォルダ内のファイルまで検索します
+.Obj.mode=再生モードを変更します
+.Obj.repmode=リストの繰返し再生設定を切り替えます
+.Obj.addfile=音楽ファイルを再生リストに追加します
+.Obj.addfolder=フォルダ内のファイルを再生リストに追加します
+.Obj.clearlist=再生リストを全消去します
+.Obj.clearfile=再生リストで選択されている音楽ファイルをリストから消去します
+.Obj.rename=再生リストで選択されている音楽ファイルの名前を変更します
+.Obj.delete=再生リストで選択されている音楽ファイルをごみ箱に捨てます
+.Obj.moveup=再生リストで選択されている項目をリスト中で一つ上に移動します
+.Obj.movedown=再生リストで選択されている項目をリスト中で一つ下に移動します
+.Obj.showfolder_s=再生リストで選択されている音楽ファイルの親フォルダを開きます
+.Obj.showproperty_s=再生リストで選択されている音楽のプロパティ画面を開きます
+.Obj.checklist=再生リスト中の全ファイルが存在するか確認します
+.Obj.sortlist=再生リストをファイル名(フルパス)昇順に並び替えます
+.Obj.loadlist=リストファイル(*.xlt)を読み込みます
+.Obj.savelist=現在の再生リストをリストファイル(*.xlt)に保存します

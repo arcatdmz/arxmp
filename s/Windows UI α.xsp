@@ -1,0 +1,275 @@
+.SkinScript.ver=40217
+.SkinScript.auth=arc@arcis
+.SkinScript.titl=Windows UI ƒ¿
+.SkinScript.comm=concept model #2 (ver.0.80)
+.Window.type=region
+.Window.widt=640
+.Window.heig=280
+.Window.drag.x=0
+.Window.drag.y=0
+.Window.drag.widt=640
+.Window.drag.heig=280
+.Window.seek.x=285
+.Window.seek.y=265
+.Window.seek.widt=300
+.Window.seek.heig=9
+.XmsFile=‰Šúİ’è.xms
+.Scroll.widt=16
+.ScrollArea.widt=320
+.List.type=normal
+
+
+::: ‰Šú‰»ˆ—
+*Initialize
+
+::: ƒEƒBƒ“ƒhƒE‚ÌŠOŒ`‚ğİ’è
+::: PPPPPPPPPPPPPPPPPPPPPPPP
+:::	”²‚«F
+col=255*0*1
+drwboxf=0*0*639*279
+:::	˜gü
+col=%s.cols%
+drwline=0*250*638*250
+drwline=0*250*0*278
+drwline=0*279*638*279
+drwline=639*250*639*278
+:::	”wŒi
+col=%s.col%
+drwboxf=1*251*638*278
+:::	Ô‚ğ”²‚«F‚É‚µ‚Ä
+col=255*0*1
+:::	ŠOŒ`Œˆ’è
+winregi
+
+::: ƒIƒuƒWƒFƒNƒg‚ğİ’u
+::: PPPPPPPPPPPPPPPPPPPPPPPP
+
+:::	‘€ìƒpƒlƒ‹
+mesfont=MS UI Gothic*11
+objsize=45*24
+pos=5*253
+objxset=prev*<< ‘O
+objsize=57*24
+pos=55*253
+objxset=pause*ˆê’â~
+objsize=38*24
+pos=117*253
+objxset=stop*’â~
+objsize=50*24
+pos=160*253
+objxset=play*> Ä¶
+objsize=45*24
+pos=215*253
+objxset=next*Ÿ >>
+pos=590*253
+objxset=listarea*İ’è
+
+:::	ƒŠƒXƒg—Ìˆæ
+:::		ƒy[ƒWØ‚è‘Ö‚¦ƒ{ƒ^ƒ“
+:::		PPPPPPPPPPPPPPPPPP
+mesfont=Tahoma*14
+objsize=20*21
+pos=575*3
+objxset=$30000013*1
+pos=595*3
+objxset=$30000014*2
+pos=615*3
+objxset=$30000015*3
+:::		page.1 - Ä¶ƒŠƒXƒg‚Ìİ’è
+:::		PPPPPPPPPPPPPPPPPP
+mesfont=MS UI Gothic*11
+objsize=60*19
+pos=85*7
+objxset=clearlist*V‹Kì¬
+objsize=45*19
+pos=147*7
+objxset=savelist*•Û‘¶
+pos=192*7
+objxset=loadlist*“Ç
+objsize=80*19
+pos=240*7
+objxset=favorite*‚¨‹C‚É“ü‚è
+mesfont=MS UI Gothic*13
+objsize=315*180
+pos=5*30
+objxset=mainlist
+mesfont=MS UI Gothic*11
+objsize=30*19
+pos=65*195
+objxset=moveup*ª
+pos=95*195
+objxset=movedown*«
+objsize=45*19
+pos=128*195
+objxset=clearfile*íœ
+objsize=65*19
+pos=173*195
+objxset=delete*+‚²‚İ” ‚Ö
+objsize=74*19
+pos=241*195
+objxset=rename*–¼‘O‚Ì•ÏX
+objsize=50*19
+pos=65*215
+objxset=addfile*ƒtƒ@ƒCƒ‹
+objsize=70*19
+pos=115*215
+objxset=addfolder*ƒtƒHƒ‹ƒ_‚©‚ç
+objsize=300*19
+pos=335*85
+objxset=$240A0010*ƒŠƒXƒgƒtƒ@ƒCƒ‹‚ÍV‹KÄ¶ƒŠƒXƒg‚É“Ç‚İ‚İ
+pos=335*105
+objxset=$240A0011*d•¡ƒtƒ@ƒCƒ‹‚ÍÅ‰ºs‚ÉˆÚ“®
+objsize=85*19
+pos=335*155
+objxset=$250A0001*MPEG Audio
+objsize=120*19
+pos=420*155
+objxset=$250A0002*WindowsMediaAudio
+objsize=95*19
+pos=540*155
+objxset=$250A0004*Midi
+objsize=85*19
+pos=335*175
+objxset=$250A0008*Wave
+objsize=120*19
+pos=420*175
+objxset=$250A0010*OggVorbis
+objsize=95*19
+pos=540*175
+objxset=$250A0020*CD Audio
+objsize=175*19
+pos=335*195
+objxset=$250A0040*(‚»‚Ì‘¼MCI‚ÅÄ¶‰Â”\‚Èƒtƒ@ƒCƒ‹)
+objsize=125*19
+pos=510*195
+objxset=$250A0080*(VDirectShowV)
+objsize=175*19
+pos=335*215
+objxset=$250A1000*ƒTƒuƒtƒHƒ‹ƒ_“à‚Ìƒtƒ@ƒCƒ‹
+objsize=125*19
+pos=510*215
+objxset=$250A2000*ƒŠƒXƒgƒtƒ@ƒCƒ‹‚Ì’†g
+
+::: (ver.402.00ƒÀ3‚ÌƒoƒO‚É‚æ‚èg—p•s‰Â)
+objstyl=%o.$240A0010%*1
+objstyl=%o.$240A0011%*1
+objstyl=%o.$30000013%*1
+objstyl=%o.$30000014%*1
+objstyl=%o.$30000015%*1
+
+mesfont=Tahoma*16
+*end
+
+
+::: ‹Èî•ñ•\¦ˆ—
+*MainLoop
+:::	”wŒi‚ÌƒNƒŠƒA
+col=%s.col%
+drwboxf=265*251*584*278
+:::	ƒV[ƒNƒo[‚Ì•`‰æ
+col=%s.cols%
+drwboxs
+drwline=284*275*584*275
+:::	ƒXƒNƒ[ƒ‹•¶š—ñ‚Ì•\¦
+pos=266*254
+messcrl
+col=0*0*0
+pos=265*253
+messcrl
+:::	˜gü‚ÌÄ•`‰æ
+col=%s.cols%
+drwline=0*250*0*278
+drwline=639*250*639*278
+:::	”wŒi‚ÌÄ•`‰æ
+col=%s.col%
+drwboxf=1*251*264*278
+drwboxf=585*251*638*278
+*end
+
+
+::: Ä¶ƒŠƒXƒg—Ìˆæ•\¦ˆ—
+*ShowList
+
+::: ƒEƒBƒ“ƒhƒE‚ÌŠOŒ`‚ğİ’è
+::: PPPPPPPPPPPPPPPPPPPPPPPP
+:::	˜gü
+col=%s.cols%
+drwline=0*0*638*0
+drwline=0*0*0*243
+drwline=0*244*638*244
+drwline=639*0*639*243
+:::	”wŒi
+col=%s.col%
+drwboxf=1*1*638*243
+:::	Ô‚ğ”²‚«F‚É‚µ‚Ä
+col=255*0*1
+:::	ŠOŒ`Œˆ’è
+winregi
+
+::: page.* ‚ğ•\¦
+::: PPPPPPPPPPPPPPPPPPPPPPPP
+
+:::	‹¤’Êˆ—
+
+:::	Šeƒy[ƒW•Êˆ—
+exefunc=$30000010
+
+*end
+
+
+::: Ä¶ƒŠƒXƒg—Ìˆæ‰B•Áˆ—
+*HideList
+
+::: ƒEƒBƒ“ƒhƒE‚ÌŠOŒ`‚ğİ’è
+::: PPPPPPPPPPPPPPPPPPPPPPPP
+:::	Ô‚ğ”²‚«F‚É‚µ‚Ä
+col=255*0*1
+:::	ŠOŒ`Œˆ’è
+drwboxf=0*0*639*245
+winregi
+
+*end
+
+
+:::  page.1 •\¦ˆ—
+*UserDef1
+
+::: ƒIƒuƒWƒFƒNƒg‚ğ•\¦‚·‚é
+::: PPPPPPPPPPPPPPPPPPPPPPPP
+
+::: •¶š‚È‚Ç‚ğ•\¦‚·‚é
+::: PPPPPPPPPPPPPPPPPPPPPPPP
+col=%s.cols%
+drwboxf=325*1*638*25
+mesfont=MS UI Gothic*14*1
+col=0*0*0
+pos=6*10
+mes=Ä¶ƒŠƒXƒg
+pos=331*65
+mes=İ’è>ƒŠƒXƒg•ÒW
+pos=331*135
+mes=İ’è>Ä¶ƒŠƒXƒg‚Ì“o˜^‘ÎÛ
+mesfont=MS UI Gothic*11
+pos=11*200
+mes=‘I‘ğ€–Ú :
+pos=11*220
+mes=’Ç‰Á :
+col=%s.cols%
+drwline=4*24*319*24
+drwline=329*79*634*79
+drwline=329*149*634*149
+drwline=185*225*326*225
+drwline=323*221*327*225
+drwline=323*229*327*225
+mesfont=Tahoma*16
+col=%s.col%
+pos=336*3
+mes="Windows UI" skin - page.1
+col=0*0*0
+pos=335*2
+mes="Windows UI" skin - page.1
+col=%s.cols%
+pos=635*24
+mes=Ä¶ƒŠƒXƒg‚Ìİ’è*right
+
+*end

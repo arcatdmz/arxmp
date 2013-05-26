@@ -1,0 +1,87 @@
+.SkinScript.ver=400
+.SkinScript.auth=Necromancer && arc@arcis
+.SkinScript.titl=foo
+.SkinScript.comm=Q**ではなく、P**hでもなく、fooです。
+.Window.type=region
+.Window.img=foo\foo.bmp
+.Window.widt=320
+.Window.heig=240
+.Window.drag.x=0
+.Window.drag.y=0
+.Window.drag.widt=320
+.Window.drag.heig=240
+.Window.seek.x=15
+.Window.seek.y=215
+.Window.seek.widt=150
+.Window.seek.heig=9
+.XmsFile=初期設定.xms
+.List.type=window
+.Scroll.widt=29
+.ScrollArea.widt=290
+
+*Initialize
+imgload=foo\foo.bmp
+.:: ボタンを設置
+.::  メイン領域右上
+objsize=17*20
+pos=275*0
+objxset=minimize
+objsize=28*20
+pos=292*0
+objxset=exit
+.::  メイン領域下
+objsize=290*15
+pos=15*190
+objxset=infowindow
+objsize=20*35
+pos=175*205
+objxset=prev
+objsize=15*35
+pos=195*205
+objxset=pause
+pos=210*205
+objxset=stop
+pos=225*205
+objxset=play
+objsize=20*35
+pos=240*205
+objxset=next
+pos=260*205
+objxset=listwindow
+objsize=15*35
+pos=280*205
+objxset=mode
+objsize=25*35
+pos=295*205
+objxset=cfgvolume
+.:: オブジェクトスタイル変更
+.::  メイン領域ボタン透明化
+objstyl=0*5
+objstyl=1*5
+objstyl=2*5
+objstyl=3*5
+objstyl=4*5
+objstyl=5*5
+objstyl=6*5
+objstyl=7*5
+objstyl=8*5
+objstyl=9*5
+objstyl=10*5
+.:: ファイル情報
+mesfont=ＭＳ ゴシック*12
+*end
+
+*MainLoop
+.:: スクロール情報
+pos=15*195
+imgdraw=15*195*290*12
+messcrl
+pos=0*195
+imgdraw=0*195*15*12
+pos=305*195
+imgdraw=305*195*15*12
+.:: シークバー
+pos=15*215
+imgdraw=15*215*150*10
+drwboxs
+*end

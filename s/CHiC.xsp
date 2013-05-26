@@ -1,0 +1,98 @@
+.SkinScript.ver=400
+.SkinScript.auth=(仮) && Arc@ARCIS
+.SkinScript.titl=CHiC
+.SkinScript.comm= c h i c ?
+.Window.type=region
+.Window.widt=300
+.Window.heig=295
+.Window.drag.x=200
+.Window.drag.y=0
+.Window.drag.widt=75
+.Window.drag.heig=95
+.Scroll.widt=20
+.ScrollArea.widt=180
+.Window.img=CHiC\blackBox.bmp
+.List.type=window
+
+::: 初期化処理
+*Initialize
+:::  サブテーブル・プレイヤー操作ボタン群
+objsize=20*20
+pos=10*260
+objxset=prev
+pos=30*260
+objxset=pause
+pos=50*260
+objxset=stop
+pos=70*260
+objxset=play
+pos=90*260
+objxset=next
+:::  メインテーブル・設定ボタン群
+objsize=65*20
+pos=15*220
+objxset=listwindow
+objsize=68*20
+pos=80*220
+objxset=mode
+objsize=84*20
+pos=148*220
+objxset=infowindow
+:::  オブジェクトの透明化
+objstyl=Obj.prev*5
+objstyl=Obj.pause*5
+objstyl=Obj.stop*5
+objstyl=Obj.play*5
+objstyl=Obj.next*5
+objstyl=Obj.listwindow*5
+objstyl=Obj.mode*5
+objstyl=Obj.infowindow*5
+imgload=CHiC\blackBox.bmp
+pos=0*0
+imgdraw=0*0*280*150
+mesfont=ＭＳ ゴシック*10
+:::  情報の表示
+pos=70*124
+mes=%p.auth%
+pos=70*144
+mes=%p.titl%
+pos=215*124
+imgdraw=215*124*85*31
+pos=70*184
+mes=%p.mode%
+*end
+
+::: メインループ
+*MainLoop
+:::  再生中時間の表示
+pos=70*164
+imgdraw=70*164*225*11
+mes=%p.posi%/%p.lgth%
+:::  スクロールの表示
+pos=110*265
+imgdraw=110*265*180*11
+messcrl
+:::  スクロール領域からはみ出た文字の消去
+pos=5*265
+imgdraw=5*265*105*11
+pos=290*265
+imgdraw=290*265*5*11
+*end
+
+::: 再生ファイルの変更
+*ChangeFile
+pos=70*124
+imgdraw=70*124*145*31
+mes=%p.auth%
+pos=70*144
+mes=%p.titl%
+pos=215*124
+imgdraw=215*124*85*31
+*end
+
+::: 再生モードの変更
+*ChangeMode
+pos=70*184
+imgdraw=70*184*225*11
+mes=%p.mode%
+*end

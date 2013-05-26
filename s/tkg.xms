@@ -1,0 +1,79 @@
+.LanguageFile.ver=400
+
+.:: 再生モード
+.Mode.nor=NOR
+.Mode.rev=REV
+.Mode.rnd=RND
+.Mode.rep=REP
+.Mode.stp=STP
+.Mode.mdr=MDR
+
+.:: リストの繰り返し再生
+.RepMode.no=
+.RepMode.yes=REP
+
+.:: 画面の最前面表示
+.WindowTop.no=OFF
+.WindowTop.yes=O N
+
+.:: タイトル/ダイアログ
+.Welcome=arX MusicPlayer
+.ProcessWait=しばらくお待ちください...
+.ProcessOK=処理が終了しました
+.Load.xsp.format=スキンの形式がおかしいため読み込めません。<BR>※スキンとプレイヤー本体が最新版かどうかを確認して下さい。<BR><BR>
+.Load.xss.format=スキン設定ファイルの形式がおかしいため読み込めません。<BR>※設定ファイルが現在のスキン用かどうかを確認してください。<BR><BR>
+.Load.xes.format=スクリプトの形式がおかしいため読み込めません。<BR>※スクリプトとプレイヤー本体が最新版かどうかを確認して下さい。<BR><BR>
+.Load.xms.format=言語ファイルの形式がおかしいため読み込めません。<BR>※言語ファイルとプレイヤー本体が最新版かどうかを確認して下さい。<BR><BR>
+.Load.img.exist=画像ファイルが存在しないため読み込めません。<BR><BR>
+.Play.file.exist=指定された音楽ファイルは存在しないため、再生できません。<BR>このファイルを再生リストから削除してもよろしいですか？<BR><BR>
+.Play.file.format=指定された音楽ファイルは本プレイヤーでは再生できません。<BR><BR>※原因としては以下の三点が考えられます。<BR>・プレイヤーがその形式に未対応<BR>・ファイルが壊れている<BR>・著作権で保護されている（詳しくはヘルプをご覧下さい）<BR><BR>
+.List.addfolder=音楽ファイルを検索するフォルダを指定してください。
+.List.deletefile=指定されたファイルを削除します。よろしいですか？<BR><BR>
+.List.clearlist=再生リストを消去します。よろしいですか？
+.List.adderror=ファイル数が多すぎて再生リストに収まりませんでした。
+.List.renamefile=変更後の名前を入れてください。
+.List.favorite=お気に入り登録名を入れてください。
+.List.overwrite=指定されたリストファイルは既に存在します｡上書きしますか？<BR><BR>
+
+.:: オブジェクトのチップヘルプ
+.::  ウィンドウ
+.Obj.listwindow=リストウィンドウを表示します
+.Obj.closelistwindow=リストウィンドウを閉じます
+.Obj.listarea=リストエリアを表示します
+.Obj.infowindow=情報ウィンドウを表示します
+.Obj.movewindow=ウィンドウを移動します
+.Obj.minimize=メインウィンドウを最小化します
+.Obj.cfgvolume=音量を調整します
+.::  メニュー
+.Obj.favorite=現在の再生リストをお気に入りとして保存します。またはお気に入りを読み込みます。
+.::  音楽再生
+.Obj.play=再生リストで選択されている音楽ファイルを再生します
+.Obj.prev=一つ前のファイルを再生します
+.Obj.next=一つ後のファイルを再生します
+.Obj.pause=音楽の再生を一時停止/復帰します
+.Obj.stop=音楽の再生を停止します
+.::  リスト編集
+.Obj.mainlist=再生リストです
+.Obj.mode=再生モードを変更します
+.Obj.repmode=再生リストを繰り返し再生するかどうかを変更します
+.Obj.addfile=音楽ファイルを再生リストに追加します
+.Obj.addfolder=フォルダ内のファイルを再生リストに追加します
+.Obj.addfolderchk=チェックしておくと、[フォルダ追加]でサブフォルダ内のファイルまで検索します
+.Obj.clearfile=再生リストで選択されている音楽ファイルをリストから消去します
+.Obj.clearlist=再生リストを全消去します
+.Obj.delete=再生リストで選択されている音楽ファイルをごみ箱に捨てます
+.Obj.rename=再生リストで選択されている音楽ファイルの名前を変更します
+.Obj.checklist=再生リスト中の全ファイルの存在有無を確認します
+.Obj.sortlist=再生リストをファイル名(フルパス)昇順に並び替えます
+.Obj.moveup=再生リストで選択されている音楽ファイルをリスト中で一つ上に移動します
+.Obj.movedown=再生リストで選択されている音楽ファイルをリスト中で一つ下に移動します
+.Obj.savelist=現在の再生リストをリストファイル(*.xlt)に保存します
+.Obj.loadlist=リストファイル(*.xlt)を読み込みます
+.::  設定読み込みと保存
+.Obj.exit=プレイヤーを終了します
+.Obj.savefavr=現在の再生リストをお気に入りとして保存します。
+
+.:: ユーザー定義
+.Obj.userdef1=メニューを表示します
+
+.:: (c) arc@arcis 2003

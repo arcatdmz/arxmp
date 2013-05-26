@@ -1,0 +1,180 @@
+.SkinScript.ver=40217
+.SkinScript.auth=arc@arcis
+.SkinScript.titl=basic.
+.SkinScript.comm=-
+.Window.type=normal
+.Window.widt=320
+.Window.heig=160
+.Window.drag.x=0
+.Window.drag.y=0
+.Window.drag.widt=320
+.Window.drag.heig=105
+.Window.seek.x=6
+.Window.seek.y=111
+.Window.seek.widt=308
+.Window.seek.heig=8
+.XmsFile=初期設定.xms
+.List.type=normal
+.List.heig=200
+.Scroll.widt=18
+.ScrollArea.widt=310
+.Var.num=4
+.Var.0.comm=ロゴ/シークバー枠/下部背景色
+.Var.1.comm=シークバー色
+.Var.2.comm=曲情報表示色
+.Var.3.comm=メイン背景色
+.Var.0.type=0
+.Var.1.type=0
+.Var.2.type=0
+.Var.3.type=0
+.Var.0.default=0*0*0
+.Var.1.default=200*200*200
+.Var.2.default=0*0*0
+.Var.3.default=255*255*255
+
+*Initialize
+.:: 背景
+col=%v.3%
+drwboxf=0*0*320*360
+.:: ロゴ
+col=%v.0%
+mesfont=Arial Black*16
+pos=315*2
+mes=Basic.*right
+drwline=5*20*315*20
+.:: 情報を表示
+col=%v.2%
+mesfont=ＭＳ ゴシック*12
+pos=5*45
+mes=著作者　　：
+pos=5*60
+mes=タイトル　：
+pos=5*75
+mes=コメント　：
+pos=5*90
+mes=位置／長さ：
+.:: シークバーを表示
+col=%v.0%
+drwboxf=5*110*315*120
+col=%v.3%
+drwboxf=6*111*314*119
+.:: ボタンを設置
+objsize=20*20
+pos=5*135
+objxset=prev*<
+mesfont=ＭＳ ゴシック*8
+objsize=30*20
+pos=30*135
+objxset=pause*||
+mesfont=ＭＳ ゴシック*11
+pos=65*135
+objxset=stop*□
+pos=100*135
+objxset=play*♪
+pos=135*135
+objxset=mode*？
+objsize=60*20
+pos=170*135
+objxset=listarea*リスト
+objsize=55*20
+pos=235*135
+objxset=infowindow*情報
+mesfont=ＭＳ ゴシック*12
+objsize=20*20
+pos=295*135
+objxset=next*>
+.:: リスト領域の初期化
+pos=17*160
+objsize=303*150
+objxset=mainlist
+pos=0*160
+objsize=17*27
+objxset=moveup*↑
+objxset=movedown*↓
+pos=0*215
+objsize=17*22
+objxset=delete*D
+objxset=rename*R
+objxset=clearlist*C
+pos=0*282
+objsize=17*26
+objxset=listwindow*L
+pos=5*313
+objsize=95*21
+objxset=addfile*ファイル追加
+pos=105*313
+objsize=100*21
+objxset=addfolder*フォルダ追加
+pos=205*313
+objsize=14*21
+objxset=addfolderchk
+pos=224*313
+objsize=90*21
+objxset=clearfile*ファイル消去
+pos=5*336
+objsize=95*21
+objxset=favorite*お気に入り
+pos=105*336
+objsize=114*21
+objxset=savelist*リスト保存
+pos=224*336
+objsize=90*21
+objxset=loadlist*リスト読込
+.:: 背景を表示
+col=%v.0%
+drwboxf=0*130*320*360
+.:: 情報を表示
+col=%v.2%
+pos=85*45
+mes=%p.auth%
+pos=85*60
+mes=%p.titl%
+pos=85*75
+mes=%p.comm%
+*end
+
+*MainLoop
+.:: スクロール領域をクリア
+col=%v.3%
+drwboxf=5*25*315*37
+.:: スクロール情報を表示
+col=%v.2%
+pos=5*25
+messcrl
+.:: スクロール領域をはみ出た部分をクリア
+col=%v.3%
+drwboxf=0*25*5*37
+drwboxf=315*25*320*37
+.:: シークバーを表示
+col=%v.0%
+drwboxf=5*110*315*120
+col=%v.3%
+drwboxf=6*111*314*119
+col=%v.1%
+drwboxs
+.:: 情報を表示
+col=%v.3%
+drwboxf=85*90*320*102
+col=%v.2%
+pos=85*90
+mes=%p.posi%／%p.lgth%
+*end
+
+*ChangeFile
+.::
+col=%v.3%
+drwboxf=85*45*315*102
+.:: 情報を表示
+col=%v.2%
+pos=85*45
+mes=%p.auth%
+pos=85*60
+mes=%p.titl%
+pos=85*75
+mes=%p.comm%
+pos=85*90
+mes=%p.posi%／%p.lgth%
+.::
+col=%v.3%
+drwboxf=315*45*320*102
+*end

@@ -1,0 +1,206 @@
+.SkinScript.ver=40217
+.SkinScript.auth=arc@arcis
+.SkinScript.titl=manmade
+.SkinScript.comm=concept model #1
+.Window.type=region
+.Window.widt=240
+.Window.heig=32
+.Window.drag.x=0
+.Window.drag.y=0
+.Window.drag.widt=240
+.Window.drag.heig=32
+.Window.seek.x=1
+.Window.seek.y=15
+.Window.seek.widt=200
+.Window.seek.heig=0
+.XmsFile=manmade\manmade.xms
+.Scroll.widt=8
+.ScrollArea.widt=200
+.List.type=window
+.Var.num=3
+.Var.0.comm=ƒ{ƒ^ƒ“F
+.Var.0.type=0
+.Var.0.default=230*0*0
+.Var.1.comm=˜gF
+.Var.1.type=0
+.Var.1.default=0*0*0
+.Var.2.comm=ƒXƒNƒ[ƒ‹•¶šF
+.Var.2.type=0
+.Var.2.default=0*0*0
+
+
+::: ‰Šú‰»ˆ—
+*Initialize
+
+::: ƒEƒBƒ“ƒhƒE‚ÌŠOŒ`‚ğŒˆ’è
+::: PPPPPPPPPPPPPPPPPPPPPPPP
+:::	Ô‚Ì”wŒi
+col=255*0*1
+drwboxf=0*0*239*31
+:::	˜gü
+col=%v.1%
+drwline=0*0*238*0
+drwline=0*0*0*30
+drwline=0*31*238*31
+drwline=239*0*239*30
+:::	”’’n
+col=255*255*255
+drwboxf=1*1*238*30
+:::	Ô‚ğ”²‚«F‚É‚µ‚Ä
+col=255*0*1
+:::	ŠOŒ`Œˆ’è
+winregi
+
+::: ‰æ‘œ‚Ì“Ç‚İ‚İ
+::: PPPPPPPPPPPPPPPPPPPPPPPP
+imgload=manmade\manmade.bmp
+
+::: imgxdrw —p‚Ì€”õ
+::: PPPPPPPPPPPPPPPPPPPPPPPP
+:::	ƒ{ƒ^ƒ“•`‰æ
+col=%v.0%
+pos=4*15
+mesfont=Webdings*10
+mes=7 ;   4 8
+drwboxf=34*21*38*26
+mesfont=Verdana*9*1
+pos=80*17
+mes=List
+pos=104*17
+mes=Info
+pos=130*17
+mes=Mode
+pos=160*17
+mes=Volume
+drwline=79*28*98*28
+drwline=103*28*124*28
+drwline=129*28*154*28
+drwline=159*28*195*28
+:::	˜gü‚Æƒ‚[ƒh‚Ìl‚ğ•`‰æ
+col=%v.1%
+:::		|
+drwline=205*1*205*29
+:::		|l
+pos=206*1
+imgdraw=%p.mode%*0*25*30
+:::		|l|
+drwline=231*1*231*29
+:::		|l|x
+drwline=233*18*236*21
+drwline=237*18*234*21
+:::		|l|x
+:::		|l|_
+drwline=233*27*236*27
+
+::: imgxdrw(Œ»İ‚Ì‰æ–Ê‚ğ "— ‰æ–Ê" ‚É“]‘—A•Û)
+::: PPPPPPPPPPPPPPPPPPPPPPPP
+imgxdrw=0*0*240*32*0*30
+
+::: ƒ{ƒ^ƒ“‚Ìİ’u
+::: PPPPPPPPPPPPPPPPPPPPPPPP
+:::	(1)
+pos=0*15
+objsize=16*17
+objxset=prev
+pos=16*15
+objsize=15*17
+objxset=pause
+pos=31*15
+objsize=13*17
+objxset=stop
+pos=44*15
+objxset=play
+pos=57*15
+objsize=16*17
+objxset=next
+:::	(2)
+pos=73*15
+objsize=29*17
+objxset=listwindow
+pos=102*15
+objsize=26*17
+objxset=infowindow
+pos=128*15
+objsize=30*17
+objxset=mode
+pos=158*15
+objsize=47*17
+objxset=cfgvolume
+:::	(3)
+pos=206*1
+objsize=25*30
+objxset=mode
+:::	(4)
+pos=231*15
+objsize=9*9
+objxset=exit
+pos=231*24
+objsize=9*8
+objxset=minimize
+::: ƒXƒ^ƒCƒ‹‚Ì•ÏX
+objstyl=0*5
+objstyl=1*5
+objstyl=2*5
+objstyl=3*5
+objstyl=4*5
+objstyl=5*5
+objstyl=6*5
+objstyl=7*5
+objstyl=8*5
+objstyl=9*5
+objstyl=10*5
+objstyl=11*5
+
+::: ƒtƒHƒ“ƒg‚Ìİ’è
+::: PPPPPPPPPPPPPPPPPPPPPPPP
+mesfont=‚l‚r ƒSƒVƒbƒN*11
+col=%v.2%
+
+*end
+
+
+::: ‹Èî•ñ•\¦ˆ—
+*MainLoop
+
+::: ‘O‰ñ•\¦“à—e‚ğÁ‹(— ‰æ–Ê‚©‚ç”’†ó‘Ô‚ğƒRƒs[)
+::: PPPPPPPPPPPPPPPPPPPPPPPP
+pos=3*4
+imgdraw=3*34*200*26
+
+::: ƒXƒNƒ[ƒ‹î•ñ‚Æ“®‚­l‚ğ•\¦
+::: PPPPPPPPPPPPPPPPPPPPPPPP
+pos=3*4
+pos=%s.scrl.pos%
+imgdraw=151*0*7*26
+mes=%p.scrl%
+
+::: ƒXƒNƒ[ƒ‹î•ñ‚Æ“®‚­l‚Ì‚Í‚İo‚½•”•ª‚ğC³
+::: PPPPPPPPPPPPPPPPPPPPPPPP
+pos=0*4
+imgdraw=0*34*3*26
+pos=203*4
+imgdraw=203*34*37*26
+
+*end
+
+
+::: ƒ`ƒbƒvƒwƒ‹ƒv‚ğ‰B‚·ˆ—
+*ShowTiphelp
+
+::: ƒ‚[ƒh•ÏX‚É‚Â‚¢‚Ä‚Ìƒ`ƒbƒvƒwƒ‹ƒv‚ª“ñ‰ÓŠ‚©‚ço‚é
+::: ‚Ì‚ª‰½‚Æ‚È‚­Œ™‚¾‚Á‚½‚¾‚¯‚Å“Á‚ÉˆÓ–¡‚Í‚È‚¢‚Å‚·B
+objhelp=9*
+
+*end
+
+
+::: Ä¶ƒ‚[ƒh•ÏXˆ—
+*ChangeMode
+
+::: "— ‰æ–Ê" ‚ÌAƒ‚[ƒh‚Ìl‚Ì•”•ª‚ğC³
+::: PPPPPPPPPPPPPPPPPPPPPPPP
+pos=206*1
+imgdraw=%p.mode%*0*25*30
+imgxdrw=206*1*25*30*206*31
+
+*end

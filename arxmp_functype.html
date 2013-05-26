@@ -1,0 +1,752 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML>
+<HEAD>
+ <META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+ <META http-equiv="Content-Style-Type" content="text/css">
+ <LINK rel="stylesheet" href="style.css" type="text/css">
+ <TITLE>全機能一覧 @ arX MusicPlayer 公式サイト</TITLE>
+</HEAD>
+<BODY>
+<DIV id="navibar">
+<A href="index.html">開発者用ページ</A> &gt;
+<A href="arxmp_functype.html">全機能一覧</A>
+</DIV>
+
+<H1>全機能一覧</H1>
+<DIV id="lastupdate">05/01/31</DIV>
+
+<DIV id="description">
+プレイヤーの各機能は固有な数値で表されます。<BR>
+<BR>
+...っつーか改めて見てみると凄い数の機能ですね。
+</DIV>
+
+
+<H2>概要</H2>
+<DIV class="h2text">
+プレイヤーは、音楽の再生と再生リストの編集、スキンの読み込みやウィンドウの表示など様々な機能を持ちます。
+こういった個々の機能には16進法8ケタの固有な番号が割り振られています。<BR>
+スクリプト中で
+<PRE>
+exefunc=<SPAN class="p">$12040000</SPAN>*C:\
+</PRE>
+<PRE>
+pos=5*5
+objsize=270*21
+objxset=<SPAN class="p">$23000000</SPAN>*再生中の音楽のファイル名をクリップボードにコピー
+objstyl=%o.<SPAN class="p">$23000000</SPAN>%*9
+objstyl=%o.<SPAN class="p">$23000000</SPAN>%*13
+</PRE>
+のようにしてオブジェクト識別子の代わりに使えます。<BR>
+というよりむしろオブジェクト識別子はプレイヤー内部の処理で機能番号に変換されている(例えば<SPAN class="f">play</SPAN>→<SPAN class="p">$07080000</SPAN>)ので、機能番号のほうがより本質的で、オブジェクト識別子は人間に分かり辛い数字を扱いやすくするために作られた代用品です。
+</DIV>
+
+
+<H2>一覧</H2>
+<DIV class="h2text">
+機能番号は上二桁でその機能の大まかな種類を、次の二桁と四桁で詳細を表します。
+<STYLE type="text/css"><!--
+
+TABLE.f_tbl {
+	width: 100%;
+	border: 1px solid #CCC;
+}
+
+TABLE.f_intbl {
+	width: 100%;
+}
+
+TABLE.f_intbl2 {
+	width: 100%;
+}
+
+TD.f_ftd {
+	width: 30%;
+}
+
+TD.f_std {
+	width: 70%;
+}
+
+TD.f_ftd2 {
+	width: 30%;
+}
+
+TD.f_std2 {
+	width: 35%;
+}
+
+TD.f_ttd2 {
+	width: 35%;
+	border: #CCC solid 1px;
+	color: #CCC;
+	font-size: small;
+	font-weight: bold;
+}
+
+.bdr
+{
+	border: #CCC solid 1px;
+}
+
+.gray
+{
+	color: #CCC;
+}
+
+
+//--></STYLE>
+
+<H3>凡例</H3>
+<TABLE class="tbl , f_tbl">
+	<TR><TD class="header , f_ftd">上ニ桁<SPAN class="sml">(種類名)</SPAN></TD><TD class="header , f_std">大まかな種類</TD></TR>
+	<TR><TD colspan=2><TABLE class="f_intbl">
+		<TR><TD class="f_ftd">次の二桁<SPAN class="sml">(詳細名)</SPAN></TD><TD class="f_std">機能説明</TD></TR>
+		<TR><TD class="bdr" colspan=2><TABLE class="f_intbl2">
+			<TR><TD class="f_ftd2">下四桁<SPAN class="sml">(詳細名)</SPAN></TD><TD class="f_std2">機能説明</TD><TD class="f_ttd2">返り値の意味</TD></TR>
+		</TABLE></TD></TR>
+	</TABLE></TD></TR>
+</TABLE>
+<DIV class="help">(※1) 返り値はプラグインから機能を実行したときのみ取得できます。<BR>(※2)「次の二桁」が 04<SPAN class="sml">(STR)</SPAN> のときはオプション文字列を番号と別に指定する必要があります。<BR>このため、その箇所の機能は文字列の指定ができるスクリプトの exefunc 命令かプラグインでのみ利用できます。</DIV>
+
+<H3>画面表示関連</H3>
+<TABLE class="tbl , f_tbl">
+	<TR><TD class="header , f_ftd">$01<SPAN class="sml">(OPEN_WND)</SPAN></TD><TD class="header , f_std">ウィンドウを表示/隠す</TD></TR>
+	<TR><TD colspan=2><TABLE class="f_intbl">
+		<TR><TD class="f_ftd">00</TD><TD class="f_std"></TD></TR>
+		<TR><TD class="bdr" colspan=2><TABLE class="f_intbl2">
+			<TR><TD class="f_ftd2">0000<SPAN class="sml">(widMain)</SPAN> or 0003<SPAN class="sml">(widRegion)</SPAN></TD><TD class="f_std2">プレイヤーの終了</TD><TD class="f_ttd2">無し</TD></TR>
+			<TR><TD class="f_ftd2">0010～<SPAN class="sml">(widExt+idx(0～))</SPAN></TD><TD class="f_std2">再生に利用している仕組みの説明画面(idx ページ目)</TD><TD class="f_ttd2">表示に成功したらFR_DONE</TD></TR>
+		</TABLE></TD></TR>
+		<TR><TD class="f_ftd">00</TD><TD class="f_std">(表示状態を変更しない/返り値により現在の状態を調べる)</TD></TR>
+		<TR><TD class="f_ftd">20<SPAN class="sml">(ON)</SPAN></TD><TD class="f_std">表示</TD></TR>
+		<TR><TD class="f_ftd">40<SPAN class="sml">(OFF)</SPAN></TD><TD class="f_std">隠す</TD></TR>
+		<TR><TD class="f_ftd">08<SPAN class="sml">(AUTO)</SPAN></TD><TD class="f_std">表示/隠す 自動判別</TD></TR>
+		<TR><TD class="bdr" colspan=2><TABLE class="f_intbl2">
+			<TR><TD class="f_ftd2">0005<SPAN class="sml">(widInfo+IDX_WND_MINFO)</SPAN></TD><TD class="f_std2">曲情報画面</TD><TD class="f_ttd2" rowspan=2>表示状態(0 隠した or 1 表示した)</TD></TR>
+			<TR><TD class="f_ftd2">0006<SPAN class="sml">(widList)</SPAN></TD><TD class="f_std2">リスト画面</TD></TR>
+			<TR><TD class="f_ftd2">0105<SPAN class="sml">(widInfo+IDX_WND_RENAME)</SPAN></TD><TD class="f_std2 , gray , sml">内部処理用/名前の変更画面</TD><TD class="f_ttd2" rowspan=3>無し</TD></TR>
+			<TR><TD class="f_ftd2">0205<SPAN class="sml">(widInfo+IDX_WND_FAVORITE)</SPAN></TD><TD class="f_std2 , gray , sml">内部処理用/お気に入り名入力画面</TD></TR>
+			<TR><TD class="f_ftd2">0405<SPAN class="sml">(widInfo+IDX_WND_SKV)</SPAN></TD><TD class="f_std2 , gray , sml">内部処理用/スキン変数入力画面</TD></TR>
+		</TABLE></TD></TR>
+	</TABLE></TD></TR>
+</TABLE>
+<DIV class="help">※オブジェクト識別子との対応<UL class="nomark">
+	<LI><SPAN class="f">listwindow</SPAN><UL><LI>OPEN_WND|AUTO+widList $01080006</LI></UL></LI>
+	<LI><SPAN class="f">closelistwindow</SPAN><UL><LI>OPEN_WND|OFF+widList $01400006</LI></UL></LI>
+	<LI><SPAN class="f">infowindow</SPAN><UL><LI>OPEN_WND|AUTO+widInfo+IDX_WND_MINFO $01080005</LI></UL></LI>
+	<LI><SPAN class="f">exit</SPAN><UL><LI>OPEN_WND+widMain $01000000</LI></UL></LI>
+</UL></DIV>
+<TABLE class="tbl , f_tbl">
+	<TR><TD class="header , f_ftd">$02<SPAN class="sml">(OPEN_LISTAREA)</SPAN></TD><TD class="header , f_std">リスト領域を表示/隠す</TD></TR>
+	<TR><TD colspan=2><TABLE class="f_intbl">
+		<TR><TD class="f_ftd">00</TD><TD class="f_std">(表示状態を変更しない/返り値により現在の状態を調べる)</TD></TR>
+		<TR><TD class="f_ftd">20<SPAN class="sml">(ON)</SPAN></TD><TD class="f_std">表示</TD></TR>
+		<TR><TD class="f_ftd">40<SPAN class="sml">(OFF)</SPAN></TD><TD class="f_std">隠す</TD></TR>
+		<TR><TD class="f_ftd">08<SPAN class="sml">(AUTO)</SPAN></TD><TD class="f_std">表示/隠す 自動判別</TD></TR>
+		<TR><TD class="bdr" colspan=2><TABLE class="f_intbl2">
+			<TR><TD class="f_ftd2">0000</TD><TD class="f_std2"></TD><TD class="f_ttd2">表示状態(0 隠した or 1 表示した)</TD></TR>
+		</TABLE></TD></TR>
+	</TABLE></TD></TR>
+</TABLE>
+<DIV class="help">※オブジェクト識別子との対応<UL class="nomark">
+	<LI><SPAN class="f">listarea</SPAN><UL><LI>OPEN_LISTAREA|AUTO $02080000</LI></UL></LI>
+</UL></DIV>
+<TABLE class="tbl , f_tbl">
+	<TR><TD class="header , f_ftd">$03<SPAN class="sml">(OPEN_PROPERTY)</SPAN></TD><TD class="header , f_std">音楽ファイルのプロパティを表示</TD></TR>
+	<TR><TD colspan=2><TABLE class="f_intbl">
+		<TR><TD class="f_ftd">00</TD><TD class="f_std">リスト中の位置で指定</TD></TR>
+		<TR><TD class="bdr" colspan=2><TABLE class="f_intbl2">
+			<TR><TD class="f_ftd2">0000～<SPAN class="sml">(idx(0～))</SPAN></TD><TD class="f_std2">再生リストで idx 番目のファイル</TD><TD class="f_ttd2" rowspan=4>成功したらFR_DONE</TD></TR>
+		</TABLE></TD></TR>
+		<TR><TD class="f_ftd">08<SPAN class="sml">(AUTO)</SPAN></TD><TD class="f_std">性質で指定</TD></TR>
+		<TR><TD class="bdr" colspan=2><TABLE class="f_intbl2">
+			<TR><TD class="f_ftd2">0000<SPAN class="sml">(IDX_SEL)</SPAN></TD><TD class="f_std2">再生リストで選択中のファイル</TD><TD class="f_ttd2" rowspan=4>成功したらFR_DONE</TD></TR>
+			<TR><TD class="f_ftd2">0001<SPAN class="sml">(IDX_CUR)</SPAN></TD><TD class="f_std2">再生中のファイル</TD></TR>
+			<TR><TD class="f_ftd2">0002<SPAN class="sml">(IDX_CUR_NEXT)</SPAN></TD><TD class="f_std2">再生中のファイルの次の項目</TD></TR>
+			<TR><TD class="f_ftd2">0003<SPAN class="sml">(IDX_CUR_PREV)</SPAN></TD><TD class="f_std2">再生中のファイルの前の項目</TD></TR>
+		</TABLE></TD></TR>
+		<TR><TD class="f_ftd">04<SPAN class="sml">(STR)</SPAN></TD><TD class="f_std">ファイル名で指定</TD></TR>
+		<TR><TD class="bdr" colspan=2><TABLE class="f_intbl2">
+			<TR><TD class="f_ftd2">0000</TD><TD class="f_std2">指定されたファイル</TD><TD class="f_ttd2">成功したらFR_DONE</TD></TR>
+		</TABLE></TD></TR>
+	</TABLE></TD></TR>
+</TABLE>
+<DIV class="help">※オブジェクト識別子との対応<UL class="nomark">
+	<LI><SPAN class="f">showproperty</SPAN><UL><LI>OPEN_PROPERTY|AUTO+IDX_CUR $03080001</LI></UL></LI>
+	<LI><SPAN class="f">showproperty_s</SPAN><UL><LI>OPEN_PROPERTY|AUTO+IDX_SEL $03080000</LI></UL></LI>
+</UL></DIV>
+<TABLE class="tbl , f_tbl">
+	<TR><TD class="header , f_ftd">$04<SPAN class="sml">(OPEN_PARENTDIR)</SPAN></TD><TD class="header , f_std">音楽ファイルの親フォルダを開く</TD></TR>
+	<TR><TD colspan=2>※ $03 と同じ</TD></TR>
+</TABLE>
+<DIV class="help">※オブジェクト識別子との対応<UL class="nomark">
+	<LI><SPAN class="f">showfolder</SPAN><UL><LI>OPEN_PARENTDIR|AUTO+IDX_CUR $04080001</LI></UL></LI>
+	<LI><SPAN class="f">showfolder_s</SPAN><UL><LI>OPEN_PARENTDIR|AUTO+IDX_SEL $04080000</LI></UL></LI>
+</UL></DIV>
+<TABLE class="tbl , f_tbl">
+	<TR><TD class="header , f_ftd">$05<SPAN class="sml">(MINIMIZE)</SPAN></TD><TD class="header , f_std">メイン画面を最小化/元に戻す</TD></TR>
+	<TR><TD colspan=2><TABLE class="f_intbl">
+		<TR><TD class="f_ftd">00</TD><TD class="f_std">(何もしない/返り値により現在の状態を調べる)</TD></TR>
+		<TR><TD class="f_ftd">20<SPAN class="sml">(ON)</SPAN></TD><TD class="f_std">最小化</TD></TR>
+		<TR><TD class="f_ftd">40<SPAN class="sml">(OFF)</SPAN></TD><TD class="f_std">元に戻す</TD></TR>
+		<TR><TD class="f_ftd">08<SPAN class="sml">(AUTO)</SPAN></TD><TD class="f_std">最小化/元に戻す 自動判別</TD></TR>
+		<TR><TD class="bdr" colspan=2><TABLE class="f_intbl2">
+			<TR><TD class="f_ftd2">0000</TD><TD class="f_std2"></TD><TD class="f_ttd2">表示状態(0 元に戻した or 1 最小化した)</TD></TR>
+		</TABLE></TD></TR>
+	</TABLE></TD></TR>
+</TABLE>
+<DIV class="help">※オブジェクト識別子との対応<UL class="nomark">
+	<LI><SPAN class="f">minimize</SPAN><UL><LI>MINIMIZE|AUTO $05080000</LI></UL></LI>
+</UL></DIV>
+<TABLE class="tbl , f_tbl">
+	<TR><TD class="header , f_ftd">$06<SPAN class="sml">(POPUP)</SPAN></TD><TD class="header , f_std">メニューを表示する</TD></TR>
+	<TR><TD colspan=2><TABLE class="f_intbl">
+		<TR><TD class="f_ftd">00</TD><TD class="f_std"></TD></TR>
+		<TR><TD class="bdr" colspan=2><TABLE class="f_intbl2">
+			<TR><TD class="f_ftd2">0001</TD><TD class="f_std2">メイン画面での右クリックメニュー</TD><TD class="f_ttd2" rowspan=23>選択された機能の実行結果<BR>メニューの表示に失敗するとFR_ERR</TD></TR>
+			<TR><TD class="f_ftd2">0002</TD><TD class="f_std2">再生リストでの右クリックメニュー</TD></TR>
+			<TR><TD class="f_ftd2">0003</TD><TD class="f_std2">「音楽の情報」</TD></TR>
+			<TR><TD class="f_ftd2">0004</TD><TD class="f_std2">「その他の情報をコピー」</TD></TR>
+			<TR><TD class="f_ftd2">0005</TD><TD class="f_std2">「再生に使用している仕組み」</TD></TR>
+			<TR><TD class="f_ftd2">0006</TD><TD class="f_std2">「音楽の再生」</TD></TR>
+			<TR><TD class="f_ftd2">0007</TD><TD class="f_std2">「再生モード」</TD></TR>
+			<TR><TD class="f_ftd2">0008</TD><TD class="f_std2">「再生リスト」</TD></TR>
+			<TR><TD class="f_ftd2">0009</TD><TD class="f_std2">「お気に入り」</TD></TR>
+			<TR><TD class="f_ftd2">000A</TD><TD class="f_std2">「現在の再生リストを...」</TD></TR>
+			<TR><TD class="f_ftd2">000B</TD><TD class="f_std2">「上書き保存」</TD></TR>
+			<TR><TD class="f_ftd2">000C</TD><TD class="f_std2">「スキン」</TD></TR>
+			<TR><TD class="f_ftd2">000D</TD><TD class="f_std2">「現在のスキンの情報」</TD></TR>
+			<TR><TD class="f_ftd2">000E</TD><TD class="f_std2">「現在のスキンを編集」</TD></TR>
+			<TR><TD class="f_ftd2">000F</TD><TD class="f_std2">「言語ファイル」</TD></TR>
+			<TR><TD class="f_ftd2">0010</TD><TD class="f_std2">「プラグイン」</TD></TR>
+			<TR><TD class="f_ftd2">0011</TD><TD class="f_std2">「スクリプト」</TD></TR>
+			<TR><TD class="f_ftd2">0012</TD><TD class="f_std2">「設定」</TD></TR>
+			<TR><TD class="f_ftd2">0013</TD><TD class="f_std2">「リスト編集」</TD></TR>
+			<TR><TD class="f_ftd2">0014</TD><TD class="f_std2">「再生リストの登録対象」</TD></TR>
+			<TR><TD class="f_ftd2">0015</TD><TD class="f_std2">「画面表示」</TD></TR>
+			<TR><TD class="f_ftd2">0016</TD><TD class="f_std2">「音楽再生」</TD></TR>
+			<TR><TD class="f_ftd2">0017</TD><TD class="f_std2">「選択項目」</TD></TR>
+		</TABLE></TD></TR>
+	</TABLE></TD></TR>
+</TABLE>
+<DIV class="help">※オブジェクト識別子との対応<UL class="nomark">
+	<LI><SPAN class="f">favorite</SPAN><UL><LI>POPUP+9 $06000009</LI></UL></LI>
+	<LI><SPAN class="f">savefavr</SPAN><UL><LI>POPUP+10 $0600000A</LI></UL></LI>
+	<LI><SPAN class="f">popup</SPAN><UL><LI>POPUP+1 $06000001</LI></UL></LI>
+</UL></DIV>
+
+<H3>音楽再生</H3>
+<TABLE class="tbl , f_tbl">
+	<TR><TD class="header , f_ftd">$07<SPAN class="sml">(PLAY)</SPAN></TD><TD class="header , f_std">音楽の再生</TD></TR>
+	<TR><TD colspan=2>※ $03 と同じ</TD></TR>
+</TABLE>
+<DIV class="help">※オブジェクト識別子との対応<UL class="nomark">
+	<LI><SPAN class="f">play</SPAN><UL><LI>PLAY|AUTO+IDX_SEL $07080000</LI></UL></LI>
+	<LI><SPAN class="f">prev</SPAN><UL><LI>PLAY|AUTO+IDX_CUR_PREV $07080003</LI></UL></LI>
+	<LI><SPAN class="f">next</SPAN><UL><LI>PLAY|AUTO+IDX_CUR_NEXT $07080002</LI></UL></LI>
+</UL></DIV>
+<TABLE class="tbl , f_tbl">
+	<TR><TD class="header , f_ftd">$08<SPAN class="sml">(PAUSE)</SPAN></TD><TD class="header , f_std">音楽再生を一時停止/再開</TD></TR>
+	<TR><TD colspan=2><TABLE class="f_intbl">
+		<TR><TD class="f_ftd">00</TD><TD class="f_std">自動判別</TD></TR>
+		<TR><TD class="bdr" colspan=2><TABLE class="f_intbl2">
+			<TR><TD class="f_ftd2">0000</TD><TD class="f_std2"></TD><TD class="f_ttd2">再生状態(0 再開した or 1 一時停止した)<BR>失敗するとFR_ERR</TD></TR>
+		</TABLE></TD></TR>
+	</TABLE></TD></TR>
+</TABLE>
+<DIV class="help">※オブジェクト識別子との対応<UL class="nomark">
+	<LI><SPAN class="f">pause</SPAN><UL><LI>PAUSE $08000000</LI></UL></LI>
+</UL></DIV>
+<TABLE class="tbl , f_tbl">
+	<TR><TD class="header , f_ftd">$09<SPAN class="sml">(STOP)</SPAN></TD><TD class="header , f_std">音楽再生を停止</TD></TR>
+	<TR><TD colspan=2><TABLE class="f_intbl">
+		<TR><TD class="f_ftd">00</TD><TD class="f_std"></TD></TR>
+		<TR><TD class="bdr" colspan=2><TABLE class="f_intbl2">
+			<TR><TD class="f_ftd2">0000</TD><TD class="f_std2"></TD><TD class="f_ttd2">FR_DONE</TD></TR>
+		</TABLE></TD></TR>
+	</TABLE></TD></TR>
+</TABLE>
+<DIV class="help">※オブジェクト識別子との対応<UL class="nomark">
+	<LI><SPAN class="f">stop</SPAN><UL><LI>STOP $09000000</LI></UL></LI>
+</UL></DIV>
+<TABLE class="tbl , f_tbl">
+	<TR><TD class="header , f_ftd">$0A<SPAN class="sml">(MODE)</SPAN></TD><TD class="header , f_std">再生モードを変更</TD></TR>
+	<TR><TD colspan=2><TABLE class="f_intbl">
+		<TR><TD class="f_ftd">20<SPAN class="sml">(ON)</SPAN></TD><TD class="f_std">再生リストを繰返し再生する</TD></TR>
+		<TR><TD class="f_ftd">40<SPAN class="sml">(OFF)</SPAN></TD><TD class="f_std">再生リストを繰返し再生しない</TD></TR>
+		<TR><TD class="f_ftd">08<SPAN class="sml">(AUTO)</SPAN></TD><TD class="f_std">する/しない 自動判別</TD></TR>
+		<TR><TD class="f_ftd">0A<SPAN class="sml">(AUTO+CHKBOX)</SPAN></TD><TD class="f_std">〃+オブジェクトとして設置されたときチェックボックスにする</TD></TR>
+		<TR><TD class="bdr" colspan=2><TABLE class="f_intbl2">
+			<TR><TD class="f_ftd2">0010<SPAN class="sml">(PM_REPLIST)</SPAN></TD><TD class="f_std2"></TD><TD class="f_ttd2">1 再生リストを繰返し再生する or 0 しない</TD></TR>
+		</TABLE></TD></TR>
+		<TR><TD class="f_ftd">00</TD><TD class="f_std">再生モードを PM_? に変更<BR>(0 PM_NOR, 1 REV, 2 RND, 3 REP, 4 STP, 5 MDR)</TD></TR>
+		<TR><TD class="f_ftd">08<SPAN class="sml">(AUTO)</SPAN></TD><TD class="f_std">次の番号の再生モードに(5 の次は 0)変更</TD></TR>
+		<TR><TD class="bdr" colspan=2><TABLE class="f_intbl2">
+			<TR><TD class="f_ftd2">0000～<SPAN class="sml">(PM_?)</SPAN></TD><TD class="f_std2"></TD><TD class="f_ttd2">現在の再生モード番号</TD></TR>
+		</TABLE></TD></TR>
+	</TABLE></TD></TR>
+</TABLE>
+<DIV class="help">※オブジェクト識別子との対応<UL class="nomark">
+	<LI><SPAN class="f">mode</SPAN><UL><LI>MODE|AUTO $0A080000</LI></UL></LI>
+	<LI><SPAN class="f">repmode</SPAN><UL><LI>MODE|AUTO+PM_REPLIST $0A080010</LI></UL></LI>
+</UL></DIV>
+<TABLE class="tbl , f_tbl">
+	<TR><TD class="header , f_ftd">$0B<SPAN class="sml">(VOLUME)</SPAN></TD><TD class="header , f_std">音量を変更</TD></TR>
+	<TR><TD class="gray" colspan=2>未実装</TD></TR>
+</TABLE>
+<TABLE class="tbl , f_tbl">
+	<TR><TD class="header , f_ftd">$0C<SPAN class="sml">(SEEK)</SPAN></TD><TD class="header , f_std">再生位置を変更</TD></TR>
+	<TR><TD colspan=2><TABLE class="f_intbl">
+		<TR><TD class="f_ftd2">000000～<SPAN class="sml">(sec)</SPAN></TD><TD class="f_std2">曲先頭から sec 秒の位置に変更</TD><TD class="f_ttd2">成功したらFR_DONE</TD></TR>
+	</TABLE></TD></TR>
+</TABLE>
+<TABLE class="tbl , f_tbl">
+	<TR><TD class="header , f_ftd">$0D<SPAN class="sml">(GETTAGINFO)</SPAN></TD><TD class="header , f_std">音楽ファイルのタグ情報を取得</TD></TR>
+	<TR><TD class="gray" colspan=2>内部処理用</TD></TR>
+</TABLE>
+<TABLE class="tbl , f_tbl">
+	<TR><TD class="header , f_ftd">$0E<SPAN class="sml">(GETSTATE)</SPAN></TD><TD class="header , f_std">音楽の再生状態を取得</TD></TR>
+	<TR><TD colspan=2><TABLE class="f_intbl">
+		<TR><TD class="f_ftd">00</TD><TD class="f_std"></TD></TR>
+		<TR><TD class="bdr" colspan=2><TABLE class="f_intbl2">
+			<TR><TD class="f_ftd2">0000</TD><TD class="f_std2"></TD><TD class="f_ttd2">ST_?<BR>(0 ST_CLOSED=停止 , 1 STOPPED=再生終了 , 2 PLAYING=再生中 , 3 PAUSED=一時停止中)</TD></TR>
+		</TABLE></TD></TR>
+	</TABLE></TD></TR>
+</TABLE>
+
+<H3>再生リスト編集</H3>
+<TABLE class="tbl , f_tbl">
+	<TR><TD class="header , f_ftd">$0F<SPAN class="sml">(LIST_REFRESH)</SPAN></TD><TD class="header , f_std">再生リストの表示を更新</TD></TR>
+	<TR><TD colspan=2><TABLE class="f_intbl">
+		<TR><TD class="f_ftd">00</TD><TD class="f_std"></TD></TR>
+		<TR><TD class="bdr" colspan=2><TABLE class="f_intbl2">
+			<TR><TD class="f_ftd2">0000</TD><TD class="f_std2"></TD><TD class="f_ttd2">再生リストに全項目が収まりきらないとFR_ERR</TD></TR>
+		</TABLE></TD></TR>
+	</TABLE></TD></TR>
+</TABLE>
+<TABLE class="tbl , f_tbl">
+	<TR><TD class="header , f_ftd">$10<SPAN class="sml">(LIST_ADD)</SPAN></TD><TD class="header , f_std">内部再生リストに tmp を追加</TD></TR>
+	<TR><TD class="gray" colspan=2>内部処理用</TD></TR>
+	<TR><TD colspan=2><TABLE class="f_intbl">
+		<TR><TD class="f_ftd , gray">04<SPAN class="sml">(STR)</SPAN></TD><TD class="f_std , gray">tmp の親フォルダを文字列で指定</TD></TR>
+		<TR><TD class="f_ftd , gray">20<SPAN class="sml">(ON)</SPAN></TD><TD class="f_std , gray">ファイル種フィルタを使用(「再生リストの登録対象」を考慮)</TD></TR>
+		<TR><TD class="f_ftd , gray">24<SPAN class="sml">(STR+ON)</SPAN></TD><TD class="f_std , gray">上記二つの組み合わせ</TD></TR>
+		<TR><TD class="bdr" colspan=2><TABLE class="f_intbl2">
+			<TR><TD class="f_ftd2 , gray">0000</TD><TD class="f_std2"></TD><TD class="f_ttd2">再生リストの全項目数</TD></TR>
+		</TABLE></TD></TR>
+	</TABLE></TD></TR>
+</TABLE>
+<TABLE class="tbl , f_tbl">
+	<TR><TD class="header , f_ftd">$11<SPAN class="sml">(LIST_ADD_FILE)</SPAN></TD><TD class="header , f_std">再生リストにファイルを追加</TD></TR>
+	<TR><TD colspan=2><TABLE class="f_intbl">
+		<TR><TD class="f_ftd">04<SPAN class="sml">(STR)</SPAN></TD><TD class="f_std">追加するファイル名を指定</TD></TR>
+		<TR><TD class="f_ftd">00</TD><TD class="f_std">ダイアログを表示して追加するファイルをユーザーに尋ねる</TD></TR>
+		<TR><TD class="bdr" colspan=2><TABLE class="f_intbl2">
+			<TR><TD class="f_ftd2">0000</TD><TD class="f_std2"></TD><TD class="f_ttd2">成功したらFR_DONE</TD></TR>
+		</TABLE></TD></TR>
+	</TABLE></TD></TR>
+</TABLE>
+<DIV class="help">※オブジェクト識別子との対応<UL class="nomark">
+	<LI><SPAN class="f">addfile</SPAN><UL><LI>LIST_ADD_FILE $11000000</LI></UL></LI>
+</UL></DIV>
+<TABLE class="tbl , f_tbl">
+	<TR><TD class="header , f_ftd">$12<SPAN class="sml">(LIST_ADD_FOLDER)</SPAN></TD><TD class="header , f_std">再生リストにフォルダ内ファイルを追加</TD></TR>
+	<TR><TD colspan=2><TABLE class="f_intbl">
+		<TR><TD class="f_ftd">04<SPAN class="sml">(STR)</SPAN></TD><TD class="f_std">ファイルを検索するフォルダ名を指定</TD></TR>
+		<TR><TD class="f_ftd">00</TD><TD class="f_std">ダイアログを表示してフォルダをユーザーに尋ねる</TD></TR>
+		<TR><TD class="bdr" colspan=2><TABLE class="f_intbl2">
+			<TR><TD class="f_ftd2">0000</TD><TD class="f_std2"></TD><TD class="f_ttd2">成功したらFR_DONE</TD></TR>
+		</TABLE></TD></TR>
+	</TABLE></TD></TR>
+</TABLE>
+<DIV class="help">※オブジェクト識別子との対応<UL class="nomark">
+	<LI><SPAN class="f">addfolder</SPAN><UL><LI>LIST_ADD_FOLDER $12000000</LI></UL></LI>
+</UL></DIV>
+<TABLE class="tbl , f_tbl">
+	<TR><TD class="header , f_ftd">$13<SPAN class="sml">(LIST_SORT)</SPAN></TD><TD class="header , f_std">再生リストの並び替え</TD></TR>
+	<TR><TD colspan=2><TABLE class="f_intbl">
+		<TR><TD class="f_ftd">00</TD><TD class="f_std"></TD></TR>
+		<TR><TD class="bdr" colspan=2><TABLE class="f_intbl2">
+			<TR><TD class="f_ftd2">0000</TD><TD class="f_std2"></TD><TD class="f_ttd2">FR_DONE</TD></TR>
+		</TABLE></TD></TR>
+	</TABLE></TD></TR>
+</TABLE>
+<DIV class="help">※オブジェクト識別子との対応<UL class="nomark">
+	<LI><SPAN class="f">sortlist</SPAN><UL><LI>LIST_SORT $13000000</LI></UL></LI>
+</UL></DIV>
+<TABLE class="tbl , f_tbl">
+	<TR><TD class="header , f_ftd">$14<SPAN class="sml">(LIST_CHECK)</SPAN></TD><TD class="header , f_std">再生リスト中のファイルの存在確認</TD></TR>
+	<TR><TD colspan=2><TABLE class="f_intbl">
+		<TR><TD class="f_ftd">00</TD><TD class="f_std"></TD></TR>
+		<TR><TD class="bdr" colspan=2><TABLE class="f_intbl2">
+			<TR><TD class="f_ftd2">0000</TD><TD class="f_std2"></TD><TD class="f_ttd2">FR_DONE</TD></TR>
+		</TABLE></TD></TR>
+	</TABLE></TD></TR>
+</TABLE>
+<DIV class="help">※オブジェクト識別子との対応<UL class="nomark">
+	<LI><SPAN class="f">checklist</SPAN><UL><LI>LIST_CHECK $14000000</LI></UL></LI>
+</UL></DIV>
+<TABLE class="tbl , f_tbl">
+	<TR><TD class="header , f_ftd">$15<SPAN class="sml">(LIST_CLEAR)</SPAN></TD><TD class="header , f_std">再生リスト中の項目を削除</TD></TR>
+	<TR><TD colspan=2><TABLE class="f_intbl">
+		<TR><TD class="f_ftd">10<SPAN class="sml">(ALL)</SPAN></TD><TD class="f_std">全項目を削除(新規再生リスト作成)</TD></TR>
+		<TR><TD class="f_ftd">10<SPAN class="sml">(ALL)</SPAN></TD><TD class="f_std">全項目を削除(新規再生リスト作成)</TD></TR>
+		<TR><TD class="bdr" colspan=2><TABLE class="f_intbl2">
+			<TR><TD class="f_ftd2">0000</TD><TD class="f_std2"></TD><TD class="f_ttd2">成功したらFR_DONE<BR>ユーザーによるキャンセルでFR_ERR</TD></TR>
+		</TABLE></TD></TR>
+		<TR><TD class="f_ftd">※ 他は $03 と同じ</TD><TD class="f_std">指定された１項目を削除</TD></TR>
+	</TABLE></TD></TR>
+</TABLE>
+<DIV class="help">※オブジェクト識別子との対応<UL class="nomark">
+	<LI><SPAN class="f">clearfile</SPAN><UL><LI>LIST_CLEAR|AUTO+IDX_SEL $15080000</LI></UL></LI>
+	<LI><SPAN class="f">clearlist</SPAN><UL><LI>LIST_CLEAR|ALL $15100000</LI></UL></LI>
+</UL></DIV>
+<TABLE class="tbl , f_tbl">
+	<TR><TD class="header , f_ftd">$16<SPAN class="sml">(LIST_DELETE)</SPAN></TD><TD class="header , f_std">再生リスト中の音楽ファイルをごみ箱に廃棄</TD></TR>
+	<TR><TD colspan=2><TABLE class="f_intbl">
+		<TR><TD class="f_ftd">※ $03 と同じ</TD><TD class="f_std">指定されたファイルをごみ箱に廃棄してリストから削除</TD></TR>
+	</TABLE></TD></TR>
+</TABLE>
+<DIV class="help">※オブジェクト識別子との対応<UL class="nomark">
+	<LI><SPAN class="f">delete</SPAN><UL><LI>LIST_DELETE|AUTO+IDX_SEL $16080000</LI></UL></LI>
+</UL></DIV>
+<TABLE class="tbl , f_tbl">
+	<TR><TD class="header , f_ftd">$17<SPAN class="sml">(LIST_RENAME)</SPAN></TD><TD class="header , f_std">再生リスト中の音楽ファイルの名前を変更</TD></TR>
+	<TR><TD colspan=2><TABLE class="f_intbl">
+		<TR><TD class="f_ftd">※ $03 と同じ</TD><TD class="f_std">指定されたファイルの名前を変更</TD></TR>
+	</TABLE></TD></TR>
+</TABLE>
+<DIV class="help">※オブジェクト識別子との対応<UL class="nomark">
+	<LI><SPAN class="f">rename</SPAN><UL><LI>LIST_RENAME|AUTO+IDX_SEL $17080000</LI></UL></LI>
+</UL></DIV>
+<TABLE class="tbl , f_tbl">
+	<TR><TD class="header , f_ftd">$18<SPAN class="sml">(LIST_UP)</SPAN></TD><TD class="header , f_std">再生リスト中の項目を一つ上に移動</TD></TR>
+	<TR><TD colspan=2><TABLE class="f_intbl">
+		<TR><TD class="f_ftd">※ $03 と同じ</TD><TD class="f_std"></TD></TR>
+	</TABLE></TD></TR>
+</TABLE>
+<DIV class="help">※オブジェクト識別子との対応<UL class="nomark">
+	<LI><SPAN class="f">moveup</SPAN><UL><LI>LIST_UP|AUTO+IDX_SEL $18080000</LI></UL></LI>
+</UL></DIV>
+<TABLE class="tbl , f_tbl">
+	<TR><TD class="header , f_ftd">$19<SPAN class="sml">(LIST_DOWN)</SPAN></TD><TD class="header , f_std">再生リスト中の項目を一つ下に移動</TD></TR>
+	<TR><TD colspan=2><TABLE class="f_intbl">
+		<TR><TD class="f_ftd">※ $03 と同じ</TD><TD class="f_std"></TD></TR>
+	</TABLE></TD></TR>
+</TABLE>
+<DIV class="help">※オブジェクト識別子との対応<UL class="nomark">
+	<LI><SPAN class="f">movedown</SPAN><UL><LI>LIST_DOWN|AUTO+IDX_SEL $19080000</LI></UL></LI>
+</UL></DIV>
+<TABLE class="tbl , f_tbl">
+	<TR><TD class="header , f_ftd">$1A<SPAN class="sml">(XLT_LOAD)</SPAN></TD><TD class="header , f_std">リストファイルを読み込む</TD></TR>
+	<TR><TD colspan=2><TABLE class="f_intbl">
+		<TR><TD class="f_ftd">04<SPAN class="sml">(STR)</SPAN></TD><TD class="f_std">読み込むリストファイル名を指定</TD></TR>
+		<TR><TD class="f_ftd">00</TD><TD class="f_std">ダイアログを表示して読み込むファイルをユーザーに尋ねる</TD></TR>
+		<TR><TD class="bdr" colspan=2><TABLE class="f_intbl2">
+			<TR><TD class="f_ftd2">0000</TD><TD class="f_std2"></TD><TD class="f_ttd2">成功したらFR_DONE</TD></TR>
+		</TABLE></TD></TR>
+		<TR><TD class="f_ftd">08<SPAN class="sml">(AUTO)</SPAN></TD><TD class="f_std">お気に入りとして登録されたリストファイル</TD></TR>
+		<TR><TD class="bdr" colspan=2><TABLE class="f_intbl2">
+			<TR><TD class="f_ftd2">0000～<SPAN class="sml">(idx(0～))</SPAN></TD><TD class="f_std2">お気に入りの idx 番目</TD><TD class="f_ttd2">成功したらFR_DONE</TD></TR>
+		</TABLE></TD></TR>
+		<TR><TD class="f_ftd">88<SPAN class="sml">(AUTO+REFRESH)</SPAN></TD><TD class="f_std">(お気に入り一覧を更新)</TD></TR>
+		<TR><TD class="bdr" colspan=2><TABLE class="f_intbl2">
+			<TR><TD class="f_ftd2">0000</TD><TD class="f_std2"></TD><TD class="f_ttd2">FR_DONE</TD></TR>
+		</TABLE></TD></TR>
+	</TABLE></TD></TR>
+</TABLE>
+<DIV class="help">※オブジェクト識別子との対応<UL class="nomark">
+	<LI><SPAN class="f">loadlist</SPAN><UL><LI>XLT_LOAD $1A000000</LI></UL></LI>
+</UL></DIV>
+<TABLE class="tbl , f_tbl">
+	<TR><TD class="header , f_ftd">$1B<SPAN class="sml">(XLT_SAVE)</SPAN></TD><TD class="header , f_std">再生リストをリストファイルとして保存</TD></TR>
+	<TR><TD colspan=2><TABLE class="f_intbl">
+		<TR><TD class="f_ftd">04<SPAN class="sml">(STR)</SPAN></TD><TD class="f_std">保存するリストファイル名を指定</TD></TR>
+		<TR><TD class="f_ftd">00</TD><TD class="f_std">ダイアログを表示して保存名をユーザーに尋ねる</TD></TR>
+		<TR><TD class="bdr" colspan=2><TABLE class="f_intbl2">
+			<TR><TD class="f_ftd2">0000</TD><TD class="f_std2"></TD><TD class="f_ttd2">成功したらFR_DONE</TD></TR>
+		</TABLE></TD></TR>
+		<TR><TD class="f_ftd">08<SPAN class="sml">(AUTO)</SPAN></TD><TD class="f_std">お気に入りリストファイルに上書き</TD></TR>
+		<TR><TD class="bdr" colspan=2><TABLE class="f_intbl2">
+			<TR><TD class="f_ftd2">0000～<SPAN class="sml">(idx(0～))</SPAN></TD><TD class="f_std2">お気に入りの idx 番目</TD><TD class="f_ttd2">成功したらFR_DONE</TD></TR>
+		</TABLE></TD></TR>
+		<TR><TD class="f_ftd">28<SPAN class="sml">(AUTO+ON)</SPAN></TD><TD class="f_std">お気に入りとして新規登録</TD></TR>
+		<TR><TD class="bdr" colspan=2><TABLE class="f_intbl2">
+			<TR><TD class="f_ftd2">0000</TD><TD class="f_std2"></TD><TD class="f_ttd2">成功したらFR_DONE</TD></TR>
+		</TABLE></TD></TR>
+	</TABLE></TD></TR>
+</TABLE>
+<DIV class="help">※オブジェクト識別子との対応<UL class="nomark">
+	<LI><SPAN class="f">savelist</SPAN><UL><LI>XLT_SAVE $1B000000</LI></UL></LI>
+</UL></DIV>
+
+<H3>スクリプト関連</H3>
+<TABLE class="tbl , f_tbl">
+	<TR><TD class="header , f_ftd">$1C<SPAN class="sml">(XSP_MODIFY)</SPAN></TD><TD class="header , f_std">スキン変数の値を編集</TD></TR>
+	<TR><TD colspan=2><TABLE class="f_intbl">
+		<TR><TD class="f_ftd">40<SPAN class="sml">(OFF)</SPAN></TD><TD class="f_std">全ての変数値を初期化</TD></TR>
+		<TR><TD class="bdr" colspan=2><TABLE class="f_intbl2">
+			<TR><TD class="f_ftd2">0000</TD><TD class="f_std2"></TD><TD class="f_ttd2">成功したらFR_DONE</TD></TR>
+		</TABLE></TD></TR>
+		<TR><TD class="f_ftd">04<SPAN class="sml">(STR)</SPAN></TD><TD class="f_std">変数値を文字列で指定</TD></TR>
+		<TR><TD class="f_ftd">00</TD><TD class="f_std">ダイアログを表示して変数値をユーザーに尋ねる</TD></TR>
+		<TR><TD class="bdr" colspan=2><TABLE class="f_intbl2">
+			<TR><TD class="f_ftd2">0000～<SPAN class="sml">(idx(0～))</SPAN></TD><TD class="f_std2">スキン変数ID idx の値を編集する</TD><TD class="f_ttd2">成功したらFR_DONE</TD></TR>
+		</TABLE></TD></TR>
+	</TABLE></TD></TR>
+</TABLE>
+<TABLE class="tbl , f_tbl">
+	<TR><TD class="header , f_ftd">$1D<SPAN class="sml">(XSP_LOAD)</SPAN></TD><TD class="header , f_std">スキンを読み込む</TD></TR>
+	<TR><TD colspan=2><TABLE class="f_intbl">
+		<TR><TD class="f_ftd">04<SPAN class="sml">(STR)</SPAN></TD><TD class="f_std">読み込むスキン名を文字列で指定</TD></TR>
+		<TR><TD class="f_ftd">08<SPAN class="sml">(AUTO)</SPAN></TD><TD class="f_std">現在のスキンを再読み込み</TD></TR>
+		<TR><TD class="bdr" colspan=2><TABLE class="f_intbl2">
+			<TR><TD class="f_ftd2">0000</TD><TD class="f_std2"></TD><TD class="f_ttd2">成功したらFR_DONE</TD></TR>
+		</TABLE></TD></TR>
+		<TR><TD class="f_ftd">00</TD><TD class="f_std">読み込むスキンを一覧から指定</TD></TR>
+		<TR><TD class="bdr" colspan=2><TABLE class="f_intbl2">
+			<TR><TD class="f_ftd2">0000～<SPAN class="sml">(idx(0～))</SPAN></TD><TD class="f_std2">一覧の idx 番目</TD><TD class="f_ttd2">成功したらFR_DONE</TD></TR>
+		</TABLE></TD></TR>
+		<TR><TD class="f_ftd">80<SPAN class="sml">(REFRESH)</SPAN></TD><TD class="f_std">(スキン一覧を更新)</TD></TR>
+		<TR><TD class="bdr" colspan=2><TABLE class="f_intbl2">
+			<TR><TD class="f_ftd2">0000</TD><TD class="f_std2"></TD><TD class="f_ttd2">FR_DONE</TD></TR>
+		</TABLE></TD></TR>
+	</TABLE></TD></TR>
+</TABLE>
+<TABLE class="tbl , f_tbl">
+	<TR><TD class="header , f_ftd">$1E<SPAN class="sml">(XSS_LOAD)</SPAN></TD><TD class="header , f_std">スキン設定ファイルを読み込む</TD></TR>
+	<TR><TD colspan=2><TABLE class="f_intbl">
+		<TR><TD class="f_ftd">04<SPAN class="sml">(STR)</SPAN></TD><TD class="f_std">読み込むスキン設定ファイル名を文字列で指定</TD></TR>
+		<TR><TD class="f_ftd">08<SPAN class="sml">(AUTO)</SPAN></TD><TD class="f_std">ダイアログを表示して読み込むファイルをユーザーに尋ねる</TD></TR>
+		<TR><TD class="bdr" colspan=2><TABLE class="f_intbl2">
+			<TR><TD class="f_ftd2">0000</TD><TD class="f_std2"></TD><TD class="f_ttd2">成功したらFR_DONE</TD></TR>
+		</TABLE></TD></TR>
+	</TABLE></TD></TR>
+</TABLE>
+<TABLE class="tbl , f_tbl">
+	<TR><TD class="header , f_ftd">$1F<SPAN class="sml">(XSS_SAVE)</SPAN></TD><TD class="header , f_std">現在のスキン変数内容をスキン設定ファイルとして保存</TD></TR>
+	<TR><TD colspan=2><TABLE class="f_intbl">
+		<TR><TD class="f_ftd">04<SPAN class="sml">(STR)</SPAN></TD><TD class="f_std">保存するスキン設定ファイル名を文字列で指定</TD></TR>
+		<TR><TD class="f_ftd">08<SPAN class="sml">(AUTO)</SPAN></TD><TD class="f_std">ダイアログを表示して保存名をユーザーに尋ねる</TD></TR>
+		<TR><TD class="bdr" colspan=2><TABLE class="f_intbl2">
+			<TR><TD class="f_ftd2">0000</TD><TD class="f_std2"></TD><TD class="f_ttd2">成功したらFR_DONE</TD></TR>
+		</TABLE></TD></TR>
+	</TABLE></TD></TR>
+</TABLE>
+<TABLE class="tbl , f_tbl">
+	<TR><TD class="header , f_ftd">$20<SPAN class="sml">(XMS_LOAD)</SPAN></TD><TD class="header , f_std">言語ファイルを読み込む</TD></TR>
+	<TR><TD colspan=2><TABLE class="f_intbl">
+		<TR><TD class="f_ftd">04<SPAN class="sml">(STR)</SPAN></TD><TD class="f_std">読み込む言語ファイル名を文字列で指定</TD></TR>
+		<TR><TD class="f_ftd">24<SPAN class="sml">(STR+ON)</SPAN></TD><TD class="f_std">〃+チップヘルプを新しい言語ファイルの内容で更新</TD></TR>
+		<TR><TD class="f_ftd">08<SPAN class="sml">(AUTO)</SPAN></TD><TD class="f_std">現在の言語ファイルを再読み込み</TD></TR>
+		<TR><TD class="f_ftd">28<SPAN class="sml">(AUTO+ON)</SPAN></TD><TD class="f_std">〃+チップヘルプを新しい言語ファイルの内容で更新</TD></TR>
+		<TR><TD class="bdr" colspan=2><TABLE class="f_intbl2">
+			<TR><TD class="f_ftd2">0000</TD><TD class="f_std2"></TD><TD class="f_ttd2">成功したらFR_DONE</TD></TR>
+		</TABLE></TD></TR>
+		<TR><TD class="f_ftd">00</TD><TD class="f_std">読み込む言語ファイルを一覧から指定</TD></TR>
+		<TR><TD class="bdr" colspan=2><TABLE class="f_intbl2">
+			<TR><TD class="f_ftd2">0000～<SPAN class="sml">(idx(0～))</SPAN></TD><TD class="f_std2">一覧の idx 番目</TD><TD class="f_ttd2">成功したらFR_DONE</TD></TR>
+		</TABLE></TD></TR>
+		<TR><TD class="f_ftd">80<SPAN class="sml">(REFRESH)</SPAN></TD><TD class="f_std">(言語ファイル一覧を更新)</TD></TR>
+		<TR><TD class="bdr" colspan=2><TABLE class="f_intbl2">
+			<TR><TD class="f_ftd2">0000</TD><TD class="f_std2"></TD><TD class="f_ttd2">FR_DONE</TD></TR>
+		</TABLE></TD></TR>
+	</TABLE></TD></TR>
+</TABLE>
+<TABLE class="tbl , f_tbl">
+	<TR><TD class="header , f_ftd">$21<SPAN class="sml">(XPI_LOAD)</SPAN></TD><TD class="header , f_std">プラグインなどの外部ファイルを起動</TD></TR>
+	<TR><TD colspan=2><TABLE class="f_intbl">
+		<TR><TD class="f_ftd">08<SPAN class="sml">(AUTO)</SPAN></TD><TD class="f_std">特殊な外部ファイル</TD></TR>
+		<TR><TD class="bdr" colspan=2><TABLE class="f_intbl2">
+			<TR><TD class="f_ftd2">0001<SPAN class="sml">(IDX_XPI_HELP)</SPAN></TD><TD class="f_std2">ヘルプファイル</TD><TD class="f_ttd2" rowspan=5>成功したらFR_DONE</TD></TR>
+			<TR><TD class="f_ftd2">0002<SPAN class="sml">(IDX_XPI_VOLUME)</SPAN></TD><TD class="f_std2">Windows の音量調整画面</TD></TR>
+			<TR><TD class="f_ftd2">0003<SPAN class="sml">(IDX_XPI_SETPLAYFUNC)</SPAN></TD><TD class="f_std2">再生に使用する仕組みの変更</TD></TR>
+			<TR><TD class="f_ftd2">0004<SPAN class="sml">(IDX_XPI_SETPLAYTYPE)</SPAN></TD><TD class="f_std2">再生できるファイル種の設定</TD></TR>
+			<TR><TD class="f_ftd2">0005<SPAN class="sml">(IDX_XPI_CFGFAVORITE)</SPAN></TD><TD class="f_std2">お気に入りの編集</TD></TR>
+		</TABLE></TD></TR>
+		<TR><TD class="f_ftd">00</TD><TD class="f_std">起動するプラグインを一覧から指定</TD></TR>
+		<TR><TD class="bdr" colspan=2><TABLE class="f_intbl2">
+			<TR><TD class="f_ftd2">0000～<SPAN class="sml">(idx(0～))</SPAN></TD><TD class="f_std2">一覧の idx 番目</TD><TD class="f_ttd2">成功したらFR_DONE</TD></TR>
+		</TABLE></TD></TR>
+		<TR><TD class="f_ftd">80<SPAN class="sml">(REFRESH)</SPAN></TD><TD class="f_std">(プラグイン一覧を更新)</TD></TR>
+		<TR><TD class="bdr" colspan=2><TABLE class="f_intbl2">
+			<TR><TD class="f_ftd2">0000</TD><TD class="f_std2"></TD><TD class="f_ttd2">FR_DONE</TD></TR>
+		</TABLE></TD></TR>
+	</TABLE></TD></TR>
+</TABLE>
+<DIV class="help">※オブジェクト識別子との対応<UL class="nomark">
+	<LI><SPAN class="f">cfgvolume</SPAN><UL><LI>XPI_LOAD|AUTO+IDX_XPI_VOLUME $21080002</LI></UL></LI>
+</UL></DIV>
+<TABLE class="tbl , f_tbl">
+	<TR><TD class="header , f_ftd">$22<SPAN class="sml">(XS_LOAD)</SPAN></TD><TD class="header , f_std">スクリプトを読み込んで実行</TD></TR>
+	<TR><TD colspan=2><TABLE class="f_intbl">
+		<TR><TD class="f_ftd">04<SPAN class="sml">(STR)</SPAN></TD><TD class="f_std">読み込むスクリプトのファイル名を文字列で指定</TD></TR>
+		<TR><TD class="f_ftd">00</TD><TD class="f_std">ダイアログを表示して読み込むファイルをユーザーに尋ねる</TD></TR>
+		<TR><TD class="bdr" colspan=2><TABLE class="f_intbl2">
+			<TR><TD class="f_ftd2">0000</TD><TD class="f_std2"></TD><TD class="f_ttd2">成功したらFR_DONE</TD></TR>
+		</TABLE></TD></TR>
+		<TR><TD class="f_ftd">08<SPAN class="sml">(AUTO)</SPAN></TD><TD class="f_std">読み込むスクリプトを一覧から指定</TD></TR>
+		<TR><TD class="bdr" colspan=2><TABLE class="f_intbl2">
+			<TR><TD class="f_ftd2">0000～<SPAN class="sml">(idx(0～))</SPAN></TD><TD class="f_std2">スクリプト一覧の idx 番目</TD><TD class="f_ttd2">成功したらFR_DONE</TD></TR>
+		</TABLE></TD></TR>
+		<TR><TD class="f_ftd">80<SPAN class="sml">(REFRESH)</SPAN></TD><TD class="f_std">(スクリプト一覧を更新)</TD></TR>
+		<TR><TD class="bdr" colspan=2><TABLE class="f_intbl2">
+			<TR><TD class="f_ftd2">0000</TD><TD class="f_std2"></TD><TD class="f_ttd2">FR_DONE</TD></TR>
+		</TABLE></TD></TR>
+	</TABLE></TD></TR>
+</TABLE>
+<TABLE class="tbl , f_tbl">
+	<TR><TD class="header , f_ftd">$30<SPAN class="sml">(SCRIPT)</SPAN></TD><TD class="header , f_std">メモリ上のスクリプトを実行</TD></TR>
+	<TR><TD colspan=2><TABLE class="f_intbl">
+		<TR><TD class="f_ftd">04<SPAN class="sml">(STR)</SPAN></TD><TD class="f_std">スクリプトを文字列で指定</TD></TR>
+		<TR><TD class="bdr" colspan=2><TABLE class="f_intbl2">
+			<TR><TD class="f_ftd2">0000</TD><TD class="f_std2"></TD><TD class="f_ttd2">FR_DONE</TD></TR>
+		</TABLE></TD></TR>
+		<TR><TD class="f_ftd">00</TD><TD class="f_std">現在のスキンの各エリアに記述されたスクリプト</TD></TR>
+		<TR><TD class="bdr" colspan=2><TABLE class="f_intbl2">
+			<TR><TD class="f_ftd2">0000</TD><TD class="f_std2">*MainLoop</TD><TD class="f_ttd2" rowspan=8>FR_DONE</TD></TR>
+			<TR><TD class="f_ftd2">0001</TD><TD class="f_std2">*ChangeMode</TD></TR>
+			<TR><TD class="f_ftd2">0002</TD><TD class="f_std2">*ChangeRepMode</TD></TR>
+			<TR><TD class="f_ftd2">0003</TD><TD class="f_std2">*ChangeFile</TD></TR>
+			<TR><TD class="f_ftd2">0004</TD><TD class="f_std2">*ShowTiphelp</TD></TR>
+			<TR><TD class="f_ftd2">0005</TD><TD class="f_std2">*ShowList</TD></TR>
+			<TR><TD class="f_ftd2">0006</TD><TD class="f_std2">*HideList</TD></TR>
+			<TR><TD class="f_ftd2">0010～(IDX_SCRIPT_USER+idx(0～))</TD><TD class="f_std2">*UserDef(idx+1)</TD></TR>
+		</TABLE></TD></TR>
+	</TABLE></TD></TR>
+</TABLE>
+<DIV class="help">※オブジェクト識別子との対応<UL class="nomark">
+	<LI><SPAN class="f">userdef(idx(0～)+1)</SPAN><UL><LI>SCRIPT+IDX_SCRIPT_USER+idx $30000010+idx</LI></UL></LI>
+</UL></DIV>
+
+<H3>その他</H3>
+<TABLE class="tbl , f_tbl">
+	<TR><TD class="header , f_ftd">$23<SPAN class="sml">(CLIP)</SPAN></TD><TD class="header , f_std">クリップボードに情報をコピー</TD></TR>
+	<TR><TD colspan=2><TABLE class="f_intbl">
+		<TR><TD class="f_ftd">00</TD><TD class="f_std"></TD></TR>
+		<TR><TD class="bdr" colspan=2><TABLE class="f_intbl2">
+			<TR><TD class="f_ftd2">0000<SPAN class="sml">(IDX_CLIP_MINFO)</SPAN>～<UL class="nomark , sml">
+				<LI>0000 ファイル名</LI>
+				<LI>0001 著作者名</LI>
+				<LI>0002 タイトル</LI>
+				<LI>0003 コメント</LI>
+				<LI>0004 ファイルのフルパス</LI>
+				<LI>0005 アルバム名</LI>
+				<LI>0006 発売日</LI>
+				<LI>0007 フォーマット</LI>
+				<LI>0008 タスクトレイアイコンのチップヘルプ文字列</LI>
+			</UL></TD><TD class="f_std2">音楽情報</TD><TD class="f_ttd2" rowspan=2>無し</TD></TR>
+			<TR><TD class="f_ftd2">0010<SPAN class="sml">(IDX_CLIP_SINFO)</SPAN>～<UL class="nomark , sml">
+				<LI>0000 ファイル名</LI>
+				<LI>0001 著作者名</LI>
+				<LI>0002 タイトル</LI>
+				<LI>0003 コメント</LI>
+				<LI>0004 関連付けられた言語ファイル名</LI>
+			</UL></TD><TD class="f_std2">スキン情報</TD></TR>
+		</TABLE></TD></TR>
+	</TABLE></TD></TR>
+</TABLE>
+<TABLE class="tbl , f_tbl">
+	<TR><TD class="header , f_ftd">$24<SPAN class="sml">(SET)</SPAN></TD><TD class="header , f_std">設定の変更</TD></TR>
+	<TR><TD colspan=2><TABLE class="f_intbl">
+		<TR><TD class="f_ftd">00</TD><TD class="f_std">(設定を変更しない/返り値により現在の設定を調べる)</TD></TR>
+		<TR><TD class="f_ftd">20<SPAN class="sml">(ON)</SPAN></TD><TD class="f_std">ON</TD></TR>
+		<TR><TD class="f_ftd">40<SPAN class="sml">(OFF)</SPAN></TD><TD class="f_std">OFF</TD></TR>
+		<TR><TD class="f_ftd">08<SPAN class="sml">(AUTO)</SPAN></TD><TD class="f_std">ON/OFF 自動判別</TD></TR>
+		<TR><TD class="f_ftd">0A<SPAN class="sml">(AUTO+CHKBOX)</SPAN></TD><TD class="f_std">〃+オブジェクトとして設置されたときチェックボックスにする</TD></TR>
+		<TR><TD class="bdr" colspan=2><TABLE class="f_intbl2">
+			<TR><TD class="f_ftd2">0010<SPAN class="sml">(IDX_SET_LIST_CLEARONLOAD)</SPAN></TD><TD class="f_std2">リストファイル読み込み時に再生リストを一旦全消去する</TD><TD class="f_ttd2" rowspan=23>変更後の設定値(0 OFF or 1 ON)</TD></TR>
+			<TR><TD class="f_ftd2">0011<SPAN class="sml">(IDX_SET_LIST_DOWNDBLITEM)</SPAN></TD><TD class="f_std2">再生リストに項目を追加するとき既に存在する場合は最下行に移動する</TD></TR>
+			<TR><TD class="f_ftd2">0020<SPAN class="sml">(IDX_SET_DISP_ONTOP)</SPAN></TD><TD class="f_std2">メイン画面を常に最前面に表示</TD></TR>
+			<TR><TD class="f_ftd2">0021<SPAN class="sml">(IDX_SET_DISP_TIPHELP)</SPAN></TD><TD class="f_std2">オブジェクトにチップヘルプを表示</TD></TR>
+			<TR><TD class="f_ftd2">0022<SPAN class="sml">(IDX_SET_DISP_TRAYICON)</SPAN></TD><TD class="f_std2">タスクトレイにアイコンを常に表示</TD></TR>
+			<TR><TD class="f_ftd2">0023<SPAN class="sml">(IDX_SET_DISP_TASKBAR)</SPAN></TD><TD class="f_std2">(ウィンドウ不定形時)タスクバーにタイトル表示</TD></TR>
+			<TR><TD class="f_ftd2">0030<SPAN class="sml">(IDX_SET_PLAY_REPLAY)</SPAN></TD><TD class="f_std2">起動時に前回終了時の再生箇所を再現</TD></TR>
+		</TABLE></TD></TR>
+	</TABLE></TD></TR>
+</TABLE>
+<TABLE class="tbl , f_tbl">
+	<TR><TD class="header , f_ftd">$25<SPAN class="sml">(SET_SEARCH)</SPAN></TD><TD class="header , f_std">設定の変更&gt;再生リストの登録対象</TD></TR>
+	<TR><TD colspan=2><TABLE class="f_intbl">
+		<TR><TD class="f_ftd">00</TD><TD class="f_std">(設定を変更しない/返り値により現在の設定を調べる)</TD></TR>
+		<TR><TD class="f_ftd">20<SPAN class="sml">(ON)</SPAN></TD><TD class="f_std">対象に含める</TD></TR>
+		<TR><TD class="f_ftd">40<SPAN class="sml">(OFF)</SPAN></TD><TD class="f_std">対象から外す</TD></TR>
+		<TR><TD class="f_ftd">08<SPAN class="sml">(AUTO)</SPAN></TD><TD class="f_std">対象に含める/外す 自動判別</TD></TR>
+		<TR><TD class="f_ftd">0A<SPAN class="sml">(AUTO+CHKBOX)</SPAN></TD><TD class="f_std">〃+オブジェクトとして設置されたときチェックボックスにする</TD></TR>
+		<TR><TD class="bdr" colspan=2><TABLE class="f_intbl2">
+			<TR><TD class="f_ftd2">0001<SPAN class="sml">(TPEX_MP3)</SPAN></TD><TD class="f_std2">MPEG Audio ファイル</TD><TD class="f_ttd2" rowspan=10>登録対象となっているTPEX_?の合計</TD></TR>
+			<TR><TD class="f_ftd2">0002<SPAN class="sml">(TPEX_WMA)</SPAN></TD><TD class="f_std2">WindowsMedia Audio ファイル</TD></TR>
+			<TR><TD class="f_ftd2">0004<SPAN class="sml">(TPEX_MID)</SPAN></TD><TD class="f_std2">Midi ファイル</TD></TR>
+			<TR><TD class="f_ftd2">0008<SPAN class="sml">(TPEX_WAV)</SPAN></TD><TD class="f_std2">Wave ファイル</TD></TR>
+			<TR><TD class="f_ftd2">0010<SPAN class="sml">(TPEX_OGG)</SPAN></TD><TD class="f_std2">OggVorbis ファイル</TD></TR>
+			<TR><TD class="f_ftd2">0020<SPAN class="sml">(TPEX_CDA)</SPAN></TD><TD class="f_std2">CD Audio</TD></TR>
+			<TR><TD class="f_ftd2">0040<SPAN class="sml">(TPEX_MCI)</SPAN></TD><TD class="f_std2">(上記以外のMCIで再生できるファイル)</TD></TR>
+			<TR><TD class="f_ftd2">0080<SPAN class="sml">(TPEX_DXS)</SPAN></TD><TD class="f_std2">(上記以外のDirectShowで再生できるファイル)</TD></TR>
+			<TR><TD class="f_ftd2">1000<SPAN class="sml">(TPEX_DIR)</SPAN></TD><TD class="f_std2">ディレクトリ(サブフォルダ内のファイル)</TD></TR>
+			<TR><TD class="f_ftd2">2000<SPAN class="sml">(TPEX_XLT)</SPAN></TD><TD class="f_std2">リストファイル(―内のファイル)</TD></TR>
+		</TABLE></TD></TR>
+	</TABLE></TD></TR>
+</TABLE>
+<DIV class="help">※オブジェクト識別子との対応<UL class="nomark">
+	<LI><SPAN class="f">addfolderchk</SPAN><UL><LI>SET_SEARCH|CHKBOX|AUTO+TPEX_DIR $250A1000</LI></UL></LI>
+</UL></DIV>
+<TABLE class="tbl , f_tbl">
+	<TR><TD class="header , f_ftd">$26<SPAN class="sml">(SET_PLAYFUNC)</SPAN></TD><TD class="header , f_std">設定の変更&gt;再生手法</TD></TR>
+	<TR><TD colspan=2><TABLE class="f_intbl">
+		<TR><TD class="f_ftd">000</TD><TD class="f_std">(設定を変更しない/返り値により現在の設定を調べる)</TD></TR>
+		<TR><TD class="f_ftd">001<SPAN class="sml">(PF_MCI)</SPAN></TD><TD class="f_std">MCIで再生</TD></TR>
+		<TR><TD class="f_ftd">002<SPAN class="sml">(PF_DXS)</SPAN></TD><TD class="f_std">DirectShowで再生</TD></TR>
+		<TR><TD class="f_ftd">003<SPAN class="sml">(PF_DLL)</SPAN></TD><TD class="f_std">その他のDLL(vbmp3,vox)で再生</TD></TR>
+		<TR><TD class="bdr" colspan=2><TABLE class="f_intbl2">
+			<TR><TD class="f_ftd2">000<SPAN class="sml">(TP_MP3)</SPAN></TD><TD class="f_std2">MPEG Audio ファイル</TD><TD class="f_ttd2" rowspan=8>再生手法 PF_?</TD></TR>
+			<TR><TD class="f_ftd2">001<SPAN class="sml">(TP_WMA)</SPAN></TD><TD class="f_std2">WindowsMedia Audio ファイル</TD></TR>
+			<TR><TD class="f_ftd2">002<SPAN class="sml">(TP_MID)</SPAN></TD><TD class="f_std2">Midi ファイル</TD></TR>
+			<TR><TD class="f_ftd2">003<SPAN class="sml">(TP_WAV)</SPAN></TD><TD class="f_std2">Wave ファイル</TD></TR>
+			<TR><TD class="f_ftd2">004<SPAN class="sml">(TP_OGG)</SPAN></TD><TD class="f_std2">OggVorbis ファイル</TD></TR>
+			<TR><TD class="f_ftd2 , gray">005<SPAN class="sml">(TP_CDA)</SPAN></TD><TD class="f_std2 , gray">CD Audio/ MCI 固定</TD></TR>
+			<TR><TD class="f_ftd2 , gray">006<SPAN class="sml">(TP_MCI)</SPAN></TD><TD class="f_std2 , gray">MCI 固定</TD></TR>
+			<TR><TD class="f_ftd2 , gray">007<SPAN class="sml">(TP_DXS)</SPAN></TD><TD class="f_std2 , gray">DirectShow 固定</TD></TR>
+		</TABLE></TD></TR>
+	</TABLE></TD></TR>
+</TABLE>
+<TABLE class="tbl , f_tbl">
+	<TR><TD class="header , f_ftd">$27<SPAN class="sml">(LOADLIB)</SPAN></TD><TD class="header , f_std">DLLなどの使用準備</TD></TR>
+	<TR><TD class="gray" colspan=2>内部処理用</TD></TR>
+	<TR><TD colspan=2><TABLE class="f_intbl">
+		<TR><TD class="f_ftd , gray">00</TD><TD class="f_std , gray">(設定を変更しない/返り値により現在の設定を調べる)</TD></TR>
+		<TR><TD class="f_ftd , gray">20<SPAN class="sml">(ON)</SPAN></TD><TD class="f_std , gray">準備</TD></TR>
+		<TR><TD class="f_ftd , gray">40<SPAN class="sml">(OFF)</SPAN></TD><TD class="f_std , gray">使用終了(解放)</TD></TR>
+		<TR><TD class="f_ftd">08<SPAN class="sml">(AUTO)</SPAN></TD><TD class="f_std">自動判別</TD></TR>
+		<TR><TD class="f_ftd">0A<SPAN class="sml">(AUTO+CHKBOX)</SPAN></TD><TD class="f_std">〃+オブジェクトとして設置されたときチェックボックスにする</TD></TR>
+		<TR><TD class="bdr" colspan=2><TABLE class="f_intbl2">
+			<TR><TD class="f_ftd2 , gray">0000<SPAN class="sml">(IDX_LOAD_COM)</SPAN></TD><TD class="f_std2 , gray">COM</TD><TD class="f_ttd2" rowspan=5>成功したらFR_DONE</TD></TR>
+			<TR><TD class="f_ftd2 , gray">0001<SPAN class="sml">(IDX_LOAD_DXS)</SPAN></TD><TD class="f_std2 , gray">DirectX DirectShow</TD></TR>
+			<TR><TD class="f_ftd2 , gray">0002<SPAN class="sml">(IDX_LOAD_VOX)</SPAN></TD><TD class="f_std2 , gray">Vox.dll</TD></TR>
+			<TR><TD class="f_ftd2 , gray">0003<SPAN class="sml">(IDX_LOAD_VBMP3)</SPAN></TD><TD class="f_std2 , gray">vbmp3.dll</TD></TR>
+			<TR><TD class="f_ftd2">0004<SPAN class="sml">(IDX_LOAD_MP3INFP)</SPAN></TD><TD class="f_std2">mp3infp.dll</TD></TR>
+		</TABLE></TD></TR>
+	</TABLE></TD></TR>
+</TABLE>
+</DIV>
+
+<H2>更新履歴</H2>
+<DIV class="h2text">
+<UL>
+	<LI>-(05/01/31)<BR><BR><UL>
+		<LI>誤記修正(「08<SPAN class="sml">(REFRESH)</SPAN>」→「80<SPAN class="sml">(REFRESH)</SPAN>」)</LI>
+		<LI>誤記修正(「0030<SPAN class="sml">(IDX_SET_DISP_TASKBAR)</SPAN>」→「0030<SPAN class="sml">(IDX_SET_PLAY_REPLAY)</SPAN>」)</LI>
+		<LI>一部の機能にチェックボックス化オプションを追加(「0A<SPAN class="sml">(AUTO+CHKBOX)</SPAN>」$0A0A0010,$270A0004)</LI>
+	</UL><BR></LI>
+	<LI>ver.403.00β4(05/01/28) HTML形式/詳細版仕様書作成</LI>
+	<LI>ver.403.00β1(04/12/27) <A href="arxmp_functype.txt">旧仕様書</A></LI>
+</UL>
+<BR>
+</DIV>
+
+
+<DIV id="copyright">
+&copy; arc@arcis
+</DIV>
+</BODY>
+</HTML>

@@ -1,0 +1,257 @@
+.SkinScript.ver=40217
+.SkinScript.auth=arc@arcis
+.SkinScript.titl=skelton
+.SkinScript.comm=concept model #3 (ver.0.10)
+
+.Window.type=region
+.Window.widt=320
+.Window.heig=180
+.Window.drag.x=0
+.Window.drag.y=0
+.Window.drag.widt=320
+.Window.drag.heig=180
+.Window.img=skelton\back.bmp
+.Window.trans.r=255
+.Window.trans.g=0
+.Window.trans.b=0
+.Window.seek.x=70
+.Window.seek.y=31
+.Window.seek.widt=240
+.Window.seek.heig=7
+
+.Var.num=5
+.Var.0.comm=背景
+.Var.0.type=5
+.Var.0.default=255*255*255
+.Var.0.list=255*255*255<BR>255*0*0
+.Var.0.list+=透過<BR>白
+.Var.1.comm=文字の枠色
+.Var.1.type=0
+.Var.1.default=0*0*0
+.Var.2.comm=文字色
+.Var.2.type=0
+.Var.2.default=240*245*255
+.Var.3.comm=シークバー色
+.Var.3.type=0
+.Var.3.default=240*245*255
+.Var.4.comm=シークバー背景/境界線色
+.Var.4.type=0
+.Var.4.default=0*0*0
+
+.XmsFile=初期設定.xms
+.List.type=window
+
+::: ◇◇初期化処理◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇
+*Initialize
+
+::: タイトルバー
+objsize=21*20
+pos=278*0
+objxset=minimize
+pos=299*0
+objxset=exit
+objstyl=%o.minimize%*5
+objstyl=%o.exit%*5
+
+::: 操作バー
+objsize=75*65
+pos=0*115
+objxset=play
+objsize=40*35
+pos=75*145
+objxset=pause
+pos=115*145
+objxset=stop
+pos=155*145
+objxset=listwindow
+pos=195*145
+objxset=mode
+pos=235*145
+objxset=cfgvolume
+objstyl=%o.pause%*5
+objstyl=%o.stop%*5
+objstyl=%o.play%*5
+objstyl=%o.listwindow%*5
+objstyl=%o.mode%*5
+objstyl=%o.cfgvolume%*5
+
+::: 再生リスト
+mesfont=Tahoma*11
+objsize=240*21
+pos=75*119
+objxset=maincomlist
+col=0*0*0
+drwboxf=75*119*314*139
+
+::: シークバー
+col=%v.4%
+drwboxf=9*30*310*39
+mesfont=Marlett*7
+col=%v.3%
+pos=11*31
+mes=3
+pos=20*31
+mes=4
+objsize=10*10
+pos=9*30
+objxset=prev
+pos=19*30
+objxset=next
+objpimg=%o.prev%*9*30*10*10
+objpimg=%o.next%*19*30*10*10
+objstyl=%o.prev%*13
+objstyl=%o.next%*13
+
+col=%v.4%
+drwline=8*96*310*96
+
+::: play-mode ...	枠
+mesfont=Tahoma*10*1
+col=%v.1%
+pos=10*99
+mes=play-mode ...
+pos=9*100
+mes=play-mode ...
+pos=11*100
+mes=play-mode ...
+pos=10*101
+mes=play-mode ...
+
+::: play-mode ...	中
+col=%v.2%
+pos=10*100
+mes=play-mode ...
+
+::: "再生モード"	枠
+mesfont=Tahoma*10
+col=%v.1%
+pos=100*99
+mes="%p.mode%"
+pos=99*100
+mes="%p.mode%"
+pos=101*100
+mes="%p.mode%"
+pos=100*101
+mes="%p.mode%"
+
+::: "再生モード"	中
+col=%v.2%
+pos=100*100
+mes="%p.mode%"
+
+col=%v.0%
+winregi
+mesfont=Tahoma*11
+*end
+
+::: ◇◇曲情報表示処理◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇
+*MainLoop
+
+col=%v.4%
+drwboxf=25*30*310*39
+col=%v.3%
+pos=68*28
+mes=%p.posh%:%p.posm%:%p.poss%*right
+drwboxs
+
+*end
+
+::: ◇◇音楽情報表示処理◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇
+*ChangeFile
+
+::: 前回の表示をクリア
+col=255*255*255
+drwboxf=9*44*310*93
+
+::: now playing ...	枠
+col=%v.1%
+mesfont=Tahoma*10*1
+pos=10*44
+mes=now playing ...
+pos=9*45
+mes=now playing ...
+pos=11*45
+mes=now playing ...
+pos=10*46
+mes=now playing ...
+::: now playing ...	中
+col=%v.2%
+pos=10*45
+mes=now playing ...
+
+::: "ファイル名"	枠
+mesfont=Tahoma*10
+col=%v.1%
+pos=100*44
+mes="%p.file%"*box*210
+mes=auth. : %p.auth%*box*210
+mes=title : %p.titl%*box*210
+pos=99*45
+mes="%p.file%"*box*210
+mes=auth. : %p.auth%*box*210
+mes=title : %p.titl%*box*210
+pos=101*45
+mes="%p.file%"*box*210
+mes=auth. : %p.auth%*box*210
+mes=title : %p.titl%*box*210
+pos=100*46
+mes="%p.file%"*box*210
+mes=auth. : %p.auth%*box*210
+mes=title : %p.titl%*box*210
+::: "ファイル名"	中
+col=%v.2%
+pos=100*45
+mes="%p.file%"*box*210
+mes=auth. : %p.auth%*box*210
+mes=title : %p.titl%*box*210
+
+col=%v.0%
+winregi
+mesfont=Tahoma*11
+*end
+
+::: ◇◇再生モード変更処理◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇
+*ChangeMode
+
+::: 前回の表示をクリア
+col=255*255*255
+drwboxf=9*99*310*112
+
+::: play-mode ...	枠
+mesfont=Tahoma*10*1
+col=%v.1%
+pos=10*99
+mes=play-mode ...
+pos=9*100
+mes=play-mode ...
+pos=11*100
+mes=play-mode ...
+pos=10*101
+mes=play-mode ...
+
+::: play-mode ...	中
+col=%v.2%
+pos=10*100
+mes=play-mode ...
+
+::: "再生モード"	枠
+mesfont=Tahoma*10
+col=%v.1%
+pos=100*99
+mes="%p.mode%"
+pos=99*100
+mes="%p.mode%"
+pos=101*100
+mes="%p.mode%"
+pos=100*101
+mes="%p.mode%"
+
+::: "再生モード"	中
+col=%v.2%
+pos=100*100
+mes="%p.mode%"
+
+col=%v.0%
+winregi
+mesfont=Tahoma*11
+*end

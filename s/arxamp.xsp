@@ -1,0 +1,133 @@
+.SkinScript.ver=400
+.SkinScript.auth=arc@arcis
+.SkinScript.titl=arX-amp.
+.SkinScript.comm=-
+.Script.minorver=40105
+.Window.type=region
+.Window.widt=320
+.Window.heig=60
+.Window.drag.x=0
+.Window.drag.y=0
+.Window.drag.widt=320
+.Window.drag.heig=60
+.Window.img=arxamp\image.bmp
+.Window.trans.r=255
+.Window.trans.g=0
+.Window.trans.b=0
+.Window.seek.x=65
+.Window.seek.y=8
+.Window.seek.widt=80
+.Window.seek.heig=12
+.List.type=window
+.XmsFile=arxamp.xms
+.Scroll.widt=12
+.ScrollArea.widt=132
+
+*Initialize
+imgload=arxamp\image.bmp
+mesfont=ＭＳ ゴシック*12
+::: (左) ボタン群 - 4個
+objsize=35*15
+pos=0*45
+objxset=listwindow
+pos=35*45
+objxset=infowindow
+objsize=104*20
+pos=151*5
+objxset=mode
+objxset=repmode
+::: (右) ボタン群 - 9個
+objsize=17*16
+pos=260*5
+objxset=prev
+pos=281*5
+objxset=next
+pos=260*29
+objxset=pause
+pos=281*29
+objxset=stop
+objsize=38*8
+pos=260*21
+objxset=play
+objsize=4*16
+pos=277*5
+objxset=play
+pos=277*29
+objxset=play
+objsize=8*45
+pos=298*0
+objxset=minimize
+objsize=14*45
+pos=306*0
+objxset=exit
+.:: ボタンの透明化
+objstyl=0*5
+objstyl=1*5
+objstyl=2*5
+objstyl=3*5
+objstyl=4*5
+objstyl=5*5
+objstyl=6*5
+objstyl=7*5
+objstyl=8*5
+objstyl=9*5
+objstyl=10*5
+objstyl=11*5
+objstyl=12*5
+.:: 再生モード表示
+pos=210*7
+imgdraw=%p.mode%*60*40*15
+.:: リピート表示
+pos=210*27
+imgdraw=%s.repmode%*60*20*15
+.::
+col=255*239*239
+pos=10*28
+mes=thank You for using!
+*end
+
+.:: 情報更新
+*MainLoop
+col=255*239*239
+.:: スクロール
+pos=10*28
+imgdraw=10*28*135*12
+messcrl
+pos=0*28
+imgdraw=0*28*10*12
+pos=145*28
+imgdraw=145*28*175*12
+pos=210*27
+imgdraw=%s.repmode%*60*20*15
+.:: 再生時間
+pos=10*8
+imgdraw=10*8*64*12
+pos=22*8
+mes=%p.posh%*right
+pos=40*8
+mes=%p.posm%*right
+pos=58*8
+mes=%p.poss%*right
+pos=10*8
+mes=　:　:
+.:: シークバー
+pos=65*10
+imgdraw=65*10*81*8
+drwboxs
+pos=65*8
+imgdraw=65*8*81*2
+pos=65*18
+imgdraw=65*18*81*3
+*end
+
+.:: 再生モード表示更新
+*ChangeMode
+pos=210*7
+imgdraw=%p.mode%*60*40*15
+*end
+
+.:: リピート表示更新
+*ChangeRepMode
+pos=210*27
+imgdraw=%s.repmode%*60*20*15
+*end

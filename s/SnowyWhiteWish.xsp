@@ -1,0 +1,110 @@
+.SkinScript.ver=400
+.SkinScript.auth=りゃる && arc@arcis
+.SkinScript.titl=Snowy, white wish.
+.SkinScript.comm=-
+.Window.type=region
+.Window.img=SnowyWhiteWish\swwish.bmp
+.Window.widt=320
+.Window.heig=240
+.Window.drag.x=0
+.Window.drag.y=0
+.Window.drag.widt=320
+.Window.drag.heig=240
+.Window.seek.x=62
+.Window.seek.y=178
+.Window.seek.widt=87
+.Window.seek.heig=8
+.Window.trans.r=255
+.Window.trans.g=0
+.Window.trans.b=0
+.List.type=window
+.Scroll.widt=18
+.ScrollArea.widt=255
+
+*Initialize
+imgload=SnowyWhiteWish\swwish.bmp
+.:: ボタンを設置
+.::  メイン領域右上
+objsize=18*20
+pos=280*0
+objxset=minimize
+objsize=22*20
+pos=298*0
+objxset=exit
+.::  メイン領域下
+objsize=50*20
+pos=10*170
+objxset=prev
+pos=150*170
+objxset=next
+objsize=43*20
+pos=10*190
+objxset=play
+pos=53*190
+objxset=stop
+objsize=104*20
+pos=96*190
+objxset=pause
+objsize=50*30
+pos=10*210
+objxset=mode
+objsize=36*40
+pos=60*210
+objxset=listwindow
+objsize=42*40
+pos=96*210
+objxset=infowindow
+objsize=62*40
+pos=138*210
+objxset=cfgvolume
+.:: オブジェクトスタイル変更
+.::  メイン領域ボタン透明化
+objstyl=0*5
+objstyl=1*5
+objstyl=2*5
+objstyl=3*5
+objstyl=4*5
+objstyl=5*5
+objstyl=6*5
+objstyl=7*5
+objstyl=8*5
+objstyl=9*5
+objstyl=10*5
+.:: ファイル情報
+mesfont=ＭＳ ゴシック*12
+col=255*255*255
+pos=48*44
+mes=%p.file%
+pos=305*44
+imgdraw=305*44*15*12
+*end
+
+*MainLoop
+.:: スクロール情報
+col=255*255*255
+pos=48*66
+imgdraw=48*66*257*12
+messcrl
+pos=0*66
+imgdraw=0*66*48*12
+pos=305*66
+imgdraw=305*66*15*12
+.:: シークバー
+pos=62*180
+imgdraw=62*180*87*5
+drwboxs
+pos=62*178
+imgdraw=62*178*87*2
+pos=62*185
+imgdraw=62*185*87*2
+*end
+
+*ChangeFile
+.:: ファイル情報
+pos=48*44
+imgdraw=48*44*257*12
+col=255*255*255
+mes=%p.file%
+pos=305*44
+imgdraw=305*44*15*12
+*end

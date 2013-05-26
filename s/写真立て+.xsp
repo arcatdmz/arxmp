@@ -1,0 +1,85 @@
+.SkinScript.ver=400
+.SkinScript.auth=Arc@ARCIS
+.SkinScript.titl=写真立てスキン
+.SkinScript.comm=お気に入りの画像を読み込ませて使ってください。
+.Window.type=normal
+.Window.widt=320
+.Window.heig=265
+.Window.drag.x=0
+.Window.drag.y=0
+.Window.drag.widt=320
+.Window.drag.heig=240
+.Window.seek.x=15
+.Window.seek.y=210
+.Window.seek.widt=270
+.Window.seek.heig=5
+.XmsFile=初期設定.xms
+.List.type=window
+.Var.num=3
+.Var.0.comm=BMP/JPEG画像(320×240px)
+.Var.0.type=2
+.Var.0.default=写真立て\青空.jpg
+.Var.1.comm=アーティスト・曲名色
+.Var.1.type=0
+.Var.1.default=0*0*0
+.Var.2.comm=シークバー・再生時間色
+.Var.2.type=0
+.Var.2.default=0*0*0
+
+*Initialize
+mesfont=ＭＳ ゴシック*12
+imgload=%v.0%
+pos=0*0
+imgdraw=0*0*320*240
+objsize=60*25
+pos=20*240
+objxset=pause*一時停止
+objsize=55*25
+pos=80*240
+objxset=stop*停止
+pos=135*240
+objxset=play*再生
+pos=190*240
+objxset=listwindow*リスト
+pos=245*240
+objxset=mode*モード
+objsize=20*25
+pos=0*240
+objxset=prev*<
+pos=300*240
+objxset=next*>
+.:: ファイル情報
+col=%v.1%
+pos=5*24
+mes=artist:
+pos=5*44
+mes=title :
+pos=48*24
+mes=%p.auth%
+pos=48*44
+mes=%p.titl%
+*end
+
+*MainLoop
+.:: シークバー
+col=%v.2%
+drwboxf=15*210*284*215
+pos=16*211
+imgdraw=16*211*268*4
+drwboxs
+.:: 再生時間
+pos=15*189
+imgdraw=15*189*285*12
+mes=pos/len : %p.posi% / %p.lgth%
+*end
+
+*ChangeFile
+.:: ファイル情報
+col=%v.1%
+pos=48*24
+imgdraw=48*24*257*12
+mes=%p.auth%
+pos=48*44
+imgdraw=48*44*257*12
+mes=%p.titl%
+*end

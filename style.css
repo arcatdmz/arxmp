@@ -1,0 +1,200 @@
+
+BODY
+{
+	margin: 20px;
+	color: #000;
+	background-color: #FFF;
+	font-family: monospace , "ÇlÇr ÉSÉVÉbÉN" , "Osaka";
+}
+
+H1
+{
+	margin: 0px;
+	padding: 5px;
+	font-size: xx-large;
+	font-weight: bold;
+	letter-spacing: 3px;
+	border: solid #000;
+	border-width: 0px 0px 1px 0px;
+}
+
+H2
+{
+	margin: 5px;
+	padding: 5px 10px;
+	font-size: x-large;
+	font-weight: bold;
+	letter-spacing: 5px;
+	border: solid #C00;
+	border-width: 0px 0px 0px 5px;
+}
+
+H3
+{
+	margin: 20px -15px;
+	font-size: large;
+	font-family: "Verdana" , monospace;
+	border: solid #C00;
+	border-width: 0px 0px 1px 0px;
+}
+
+PRE
+{
+	margin: 10px;
+	padding: 10px;
+	font-size: medium;
+	border: solid #CCC 1px;
+}
+
+IMG
+{
+	margin: 10px;
+}
+
+A
+{
+	color: #00F;
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+A:hover
+{
+	text-decoration: none;
+}
+
+TD
+{
+	margin: 5px;
+	padding: 5px;
+}
+
+LI.sub
+{
+	margin: 0px 0px 10px 0px;
+}
+
+TABLE.tbl
+{
+	margin: 10px 5px 10px 10px;
+	padding: 10px;
+	border: solid #CCC 1px;
+}
+
+TD.header
+{
+	color: #000;
+	background-color: #FEC;
+	border: solid #EDB;
+	border-width: 0px 0px 1px 0px;
+}
+
+TD.back
+{
+	color: #000;
+	background-color: #FFE;
+	border: solid #DDC 1px;
+}
+
+TD.dockrgt
+{
+	margin-right: 0px;
+	padding-right: 0px;
+}
+
+DIV.h2text
+{
+	margin: 20px 30px;
+	font-size: medium;
+	line-height: 120%;
+}
+
+DIV.help
+{
+	margin: 0px 0px 10px 0px;
+	font-size: smaller;
+	text-align: right;
+}
+
+DIV.support
+{
+	margin: -18px -15px 12px 5px;
+	color: #C00;
+	font-size: smaller;
+	text-align: right;
+}
+
+UL.deci
+{
+	list-style-type: decimal;
+}
+
+UL.nomark
+{
+	list-style-type: none;
+}
+
+.bld
+{
+	font-weight: bold;
+}
+
+.str
+{
+	color: #F60;
+	font-weight: bold;
+}
+
+.sml
+{
+	font-size: smaller;
+}
+
+.f
+{
+	color: #C00;
+	font-weight: bold;
+}
+
+.p
+{
+	color: #999;
+	font-weight: bold;
+}
+
+#description
+{
+	width: 400px;
+	margin: 20px auto;
+	padding: 20px;
+	border: 1px dotted #000;
+}
+
+#navibar
+{
+	margin: 0px 0px 15px 0px;
+	padding: 10px;
+	background-color: #FFF;
+	color: #CEF;
+	border: solid #CEF;
+	border-width: 1px 5px;
+}
+
+#lastupdate
+{
+	margin: 5px;
+	text-align: right;
+	font-weight: bold;
+	font-family: "Verdana";
+}
+
+#copyright
+{
+	margin-top: 30px;
+	padding: 5px;
+	border: solid #000;
+	border-width: 1px 0px 0px 0px;
+	text-align: center;
+	font-weight: bold;
+	font-family: "Verdana";
+}

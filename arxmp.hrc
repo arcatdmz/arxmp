@@ -1,0 +1,18 @@
+
+[RUNTIME]
+filename=hsprt
+tempname=runtime\hsprt_arxmp40300b51
+
+[ICON]
+filename=arxmp.ico
+
+[MANIFEST]
+filename=arxmp.manifest
+
+[VERSION]
+ProductName=arX MusicPlayer
+ProductVersion=403.00β5.1
+FileDescription=MP3/WMA/MIDI/WAVE/OggVorbis/CD対応音楽プレイヤー
+FileDescription=arX MusicPlayer
+LegalCopyright=(c) arc@dmz
+OriginalFilename=arxmp.exe

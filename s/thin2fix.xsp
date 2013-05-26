@@ -1,0 +1,335 @@
+.SkinScript.ver=400
+.SkinScript.auth=TKG
+.SkinScript.titl=Broad Mode2
+.SkinScript.comm=ブロードサイズ。アーティストとタイトル表示
+.Window.type=region
+.Window.widt=410
+.Window.heig=27
+.Window.drag.x=2
+.Window.drag.y=2
+.Window.drag.widt=372
+.Window.drag.heig=14
+.Window.seek.x=183
+.Window.seek.y=18
+.Window.seek.widt=146
+.Window.seek.heig=4
+.Scroll.widt=5
+.ScrollArea.widt=129
+.XmsFile=tkg.xms
+.List.type=normal
+.List.heig=195
+.Scroll.widt=18
+.ScrollArea.widt=255
+.Window.img=thin\t_a.bmp
+.Window.trans.255
+.Window.trans.0
+.Window.trans.0
+.Var.num=5
+.Var.0.comm=メイン背景色
+.Var.1.comm=枠
+.Var.2.comm=文字
+.Var.3.comm=シークバー色(ステータス)
+.Var.4.comm=シークバー背景色
+.Var.0.type=0
+.Var.1.type=0
+.Var.2.type=0
+.Var.3.type=0
+.Var.4.type=0
+.Var.0.default=255*255*255
+.Var.1.default=0*0*0
+.Var.2.default=0*0*0
+.Var.3.default=150*150*150
+.Var.4.default=225*225*225
+
+*Initialize
+.:: 外枠
+col=%v.1%
+drwboxf=0*0*409*221
+col=%v.0%
+drwboxf=3*1*406*25
+drwboxf=1*3*408*23
+drwboxf=2*2*407*24
+drwboxf=3*28*406*28
+drwboxf=2*29*407*29
+drwboxf=1*30*408*220
+.:: アイコン設置
+imgload=thin\t.bmp
+pos=1*1
+imgdraw=0*0*13*13
+col=%v.1%
+drwboxf=1*1*2*1
+drwboxf=1*2*1*2
+.:: 既定文字
+col=%v.2%
+mesfont=Arial*11
+pos=93*13
+mes=MODE
+.:: モード表示
+col=%v.3%
+pos=128*13
+mes=%p.mode%
+pos=157*13
+mes=%s.repmode%
+.:: ボタン設定
+objsize=13*13
+pos=0*0
+objxset=userdef1
+objsize=62*9
+pos=92*15
+objxset=mode
+objsize=28*9
+pos=155*15
+objxset=repmode
+objsize=11*11
+pos=381*4
+objxset=minimize
+pos=395*4
+objxset=exit
+objsize=11*9
+pos=4*15
+objxset=prev
+pos=17*15
+objxset=pause
+pos=30*15
+objxset=stop
+pos=44*15
+objxset=play
+pos=59*15
+objxset=next
+pos=75*15
+objxset=listarea
+objstyl=Obj.mode*5
+objstyl=Obj.repmode*5
+objstyl=Obj.minimize*5
+objstyl=Obj.exit*5
+objstyl=Obj.prev*5
+objstyl=Obj.pause*5
+objstyl=Obj.stop*5
+objstyl=Obj.play*5
+objstyl=Obj.next*5
+objstyl=Obj.listarea*5
+.:: 画像ボタン設置
+pos=380*2
+imgdraw=13*0*13*13
+pos=394*2
+imgdraw=26*0*13*13
+col=%v.0%
+drwboxf=380*2*380*2
+drwboxf=392*2*394*2
+drwboxf=406*2*406*2
+drwboxf=350*14*380*14
+drwboxf=392*14*394*14
+drwboxf=406*14*406*14
+.:: drwboxfボタン設置
+col=%v.2%
+drwboxf=8*17*8*17
+drwboxf=7*18*7*18
+drwboxf=6*19*6*19
+drwboxf=5*20*5*20
+drwboxf=6*21*6*21
+drwboxf=7*22*7*22
+drwboxf=8*23*8*23
+drwboxf=13*17*13*17
+drwboxf=12*18*12*18
+drwboxf=11*19*11*19
+drwboxf=10*20*10*20
+drwboxf=11*21*11*21
+drwboxf=12*22*12*22
+drwboxf=13*23*13*23
+drwboxf=21*17*21*23
+drwboxf=24*17*24*23
+drwboxf=32*17*38*23
+drwboxf=46*17*47*23
+drwboxf=48*18*49*22
+drwboxf=50*19*51*21
+drwboxf=52*20*53*20
+drwboxf=60*17*60*17
+drwboxf=61*18*61*18
+drwboxf=62*19*62*19
+drwboxf=63*20*63*20
+drwboxf=62*21*62*21
+drwboxf=61*22*61*22
+drwboxf=60*23*60*23
+drwboxf=65*17*65*17
+drwboxf=66*18*66*18
+drwboxf=67*19*67*19
+drwboxf=68*20*68*20
+drwboxf=67*21*67*21
+drwboxf=66*22*66*22
+drwboxf=65*23*65*23
+drwboxf=76*17*76*17
+drwboxf=77*18*77*19
+drwboxf=78*20*78*20
+drwboxf=79*21*79*22
+drwboxf=80*23*80*23
+drwboxf=81*21*81*22
+drwboxf=82*20*82*20
+drwboxf=83*18*83*19
+drwboxf=84*17*84*17
+.:: シークバー初期化
+col=%v.1%
+drwboxf=182*17*330*23
+col=%v.4%
+drwboxf=183*18*329*22
+.:: 時間初期化
+mesfont=ＭＳ ゴシック*11
+col=%v.2%
+pos=394*16
+mes=%p.lgtm%:*right
+pos=406*16
+mes=%p.lgts%*right
+.:: リストエリア初期化
+.:: ボタン初期化
+objsize=8*8
+pos=163*30
+objxset=addfolderchk
+objsize=11*10
+pos=7*30
+objxset=moveup
+pos=26*30
+objxset=movedown
+objsize=19*10
+pos=51*30
+objxset=clearfile
+pos=261*30
+objxset=clearlist
+objsize=25*10
+pos=84*30
+objxset=addfile
+pos=187*30
+objxset=loadlist
+pos=224*30
+objxset=savelist
+objsize=36*10
+pos=122*30
+objxset=addfolder
+objsize=38*10
+pos=291*30
+objxset=listwindow
+objsize=66*10
+pos=339*30
+objxset=infowindow
+objstyl=Obj.userdef1*5
+objstyl=Obj.moveup*5
+objstyl=Obj.movedown*5
+objstyl=Obj.clearfile*5
+objstyl=Obj.addfile*5
+objstyl=Obj.addfolder*5
+objstyl=Obj.loadlist*5
+objstyl=Obj.savelist*5
+objstyl=Obj.clearlist*5
+objstyl=Obj.listwindow*5
+objstyl=Obj.infowindow*5
+mesfont=ＭＳ ゴシック*11
+col=%v.2%
+pos=8*30
+mes=↑
+pos=27*30
+mes=↓
+pos=52*30
+mes=Del
+pos=85*30
+mes=File
+pos=123*30
+mes=Folder
+pos=188*30
+mes=Load
+pos=225*30
+mes=Save
+pos=262*30
+mes=Cls
+pos=292*30
+mes=Window
+pos=340*30
+mes=Information
+.:: リスト表示
+mesfont=ＭＳ ゴシック*11
+pos=1*41
+objsize=408*184
+objxset=mainlist
+.:: リスト初期化
+mesfont=ＭＳ ゴシック*12
+col=%v.2%
+pos=18*2
+mes=%p.auth% / %p.titl% / %p.atit%
+*end
+
+*MainLoop
+.:: シークバー更新
+col=%v.1%
+drwboxf=182*17*330*23
+col=%v.4%
+drwboxf=183*18*329*22
+col=%v.3%
+drwboxs
+.:: 時間更新
+mesfont=ＭＳ ゴシック*11
+col=%v.0%
+drwboxf=338*16*373*24
+col=%v.2%
+pos=358*16
+mes=%p.posm%:*right
+pos=376*16
+mes=%p.poss%/*right
+*end
+
+*ChangeMode
+*ChangeRepMode
+.:: モード更新
+mesfont=Arial*11
+col=%v.0%
+drwboxf=128*14*174*24
+col=%v.3%
+pos=128*13
+mes=%p.mode%
+pos=157*13
+mes=%s.repmode%
+*end
+
+*ChangeFile
+.:: リスト初期化
+col=%v.0%
+drwboxf=18*2*374*13
+.:: リスト更新
+mesfont=ＭＳ ゴシック*12
+col=%v.2%
+pos=18*2
+mes=%p.auth% / %p.titl% / %p.atit%
+col=%v.0%
+drwboxf=372*2*408*13
+col=%v.1%
+drwboxf=408*2*408*2
+drwboxf=409*2*409*13
+.:: 画像ボタン再配置
+pos=380*2
+imgdraw=13*0*13*13
+col=%v.0%
+pos=394*2
+imgdraw=26*0*13*13
+col=%v.0%
+drwboxf=380*2*380*2
+drwboxf=392*2*394*2
+drwboxf=406*2*406*2
+drwboxf=350*14*380*14
+drwboxf=392*14*394*14
+drwboxf=406*14*406*14
+.:: 時間クリア
+col=%v.0%
+drwboxf=338*16*405*24
+mesfont=ＭＳ ゴシック*11
+col=%v.2%
+pos=394*16
+mes=%p.lgtm%:*right
+pos=406*16
+mes=%p.lgts%*right
+.:: シークバークリア
+col=%v.1%
+drwboxf=182*17*330*23
+col=%v.4%
+drwboxf=183*18*329*22
+*end
+
+*UserDef1
+.:: メニューの表示
+setmenu=popup
+*end
